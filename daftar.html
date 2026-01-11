@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daftar Akun | Media Pembelajaran</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============ RESET ============ */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(180deg,#1e2f8f,#0b1c4d);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:16px;
+    color:#fff;
+}
+
+/* ============ CARD (DIPERKECIL) ============ */
+.register-box{
+    width:100%;
+    max-width:340px;               /* ← DIPERKECIL */
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(14px);
+    border-radius:18px;
+    padding:18px 16px;             /* ← DIPERKECIL */
+    box-shadow:0 12px 26px rgba(0,0,0,.35);
+    text-align:center;
+}
+
+/* ============ HEADER CARD ============ */
+.register-box img{
+    width:46px;                    /* ← DIPERKECIL */
+    margin-bottom:6px;
+}
+
+.register-box h2{
+    font-size:19px;                /* ← DIPERKECIL */
+    margin-bottom:2px;
+}
+
+.register-box p{
+    font-size:12px;                /* ← DIPERKECIL */
+    color:#e6e9ff;
+    margin-bottom:12px;
+}
+
+/* ============ INPUT ============ */
+.input-group{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.18);
+    padding:8px 12px;              /* ← DIPERKECIL */
+    border-radius:20px;
+    margin-bottom:8px;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#fff;
+    font-size:12.5px;              /* ← DIPERKECIL */
+}
+
+/* === PERBAIKAN WARNA DROPDOWN OPTION === */
+.input-group select option{
+    color:#000;          /* teks hitam */
+    background:#fff;     /* background putih */
+}
+
+
+.input-group input::placeholder{
+    color:#e6e9ff;
+}
+
+/* ============ CHECKBOX ============ */
+.checkbox{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    font-size:11.5px;              /* ← DIPERKECIL */
+    margin:10px 0;
+    text-align:left;
+}
+
+.checkbox input{
+    margin-top:3px;
+}
+
+/* ============ BUTTON ============ */
+button{
+    width:100%;
+    padding:10px;                  /* ← DIPERKECIL */
+    border:none;
+    border-radius:22px;
+    background:linear-gradient(90deg,#e63946,#ff7a6b);
+    color:#fff;
+    font-size:13.5px;              /* ← DIPERKECIL */
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(230,57,70,.45);
+}
+
+button:hover{
+    transform:translateY(-1px);
+}
+
+/* ============ FOOTER ============ */
+.footer{
+    margin-top:12px;
+    font-size:11.5px;              /* ← DIPERKECIL */
+}
+
+.footer a{
+    color:#fff;
+    font-weight:600;
+    text-decoration:none;
+}
+
+/* ============ UTIL ============ */
+.hidden{display:none}
+
+/* ============ RESPONSIVE ============ */
+@media(max-height:650px){
+    body{
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="register-box">
+
+<img src="img/logo-smkn9.png" alt="Logo">
+
+<h2>Daftar Akun</h2>
+<p>Lengkapi data untuk mulai belajar</p>
+
+<form onsubmit="daftar(event)">
+
+<div class="input-group">
+    <input type="text" placeholder="Nama Lengkap" required>
+</div>
+
+<div class="input-group">
+    <input type="text" id="username" placeholder="Username" required>
+</div>
+<small id="userError"></small>
+
+
+<div class="input-group">
+    <input type="password" id="password" placeholder="Password" required>
+</div>
+<small id="passError"></small>
+
+
+<div class="input-group">
+    <input type="password" id="confirmPassword" placeholder="Konfirmasi Password" required>
+</div>
+<small id="confirmError"></small>
+
+
+<div class="input-group">
+    <select id="role" onchange="pilihRole()" required>
+        <option value="">Pilih Peran Akun</option>
+        <option value="siswa">Siswa</option>
+        <option value="lainnya">Lainnya</option>
+    </select>
+</div>
+
+<!-- FORM SISWA -->
+<div id="formSiswa" class="hidden">
+    <div class="input-group"><input placeholder="Sekolah"></div>
+    <div class="input-group"><input placeholder="Kelas"></div>
+    <div class="input-group"><input placeholder="Mata Pelajaran"></div>
+    <div class="input-group"><input placeholder="NISN"></div>
+    <div class="input-group"><input type="email" placeholder="Email"></div>
+</div>
+
+<!-- FORM LAINNYA -->
+<div id="formLainnya" class="hidden">
+    <div class="input-group"><input placeholder="Sebagai apa?"></div>
+    <div class="input-group"><input type="email" placeholder="Email"></div>
+</div>
+
+<div class="checkbox">
+    <input type="checkbox" id="agree">
+    <label for="agree">Saya menyetujui penggunaan data untuk pembelajaran</label>
+</div>
+
+<button type="submit">Daftar</button>
+
+</form>
+
+<div class="footer">
+    Sudah punya akun? <a href="login.html">Login</a>
+</div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, set, push, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// Konfigurasi Firebase Anda
+const firebaseConfig = {
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Fungsi untuk menampilkan form tambahan (Siswa/Lainnya)
+window.pilihRole = function() {
+    const role = document.getElementById("role").value;
+    document.getElementById("formSiswa").classList.toggle("hidden", role !== "siswa");
+    document.getElementById("formLainnya").classList.toggle("hidden", role !== "lainnya");
+}
+
+// Fungsi utama pendaftaran
+window.daftar = async function(e) {
+    e.preventDefault();
+    
+    // Validasi checkbox
+    if(!document.getElementById("agree").checked){
+        alert("Anda harus menyetujui penggunaan data");
+        return;
+    }
+
+    // Ambil data dasar
+    const namaLengkap = document.querySelector('input[placeholder="Nama Lengkap"]').value;
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    // Menyiapkan object data untuk dikirim
+    let dataUser = {
+        nama: namaLengkap,
+        username: user,
+        password: pass,
+        role: role,
+        skor: 0, // Nilai awal untuk Leaderboard
+        materiSelesai: 0 // Nilai awal untuk Dashboard
+    };
+
+    // Tambahkan data spesifik berdasarkan role
+    if(role === "siswa") {
+    const inputs = document.querySelectorAll('#formSiswa input');
+    dataUser.sekolah = inputs[0].value || "-";
+    dataUser.kelas = inputs[1].value || "-";
+    dataUser.mapel = inputs[2].value || "-";
+    dataUser.nisn = inputs[3].value || "-";
+    dataUser.email = inputs[4].value || "-";
+    } else if(role === "lainnya") {
+        const inputs = document.querySelectorAll('#formLainnya input');
+        dataUser.sebagai = inputs[0].value;
+        dataUser.email = inputs[1].value;
+    }
+
+    try {
+        console.log("Mencoba menghubungkan ke database...");
+        const dbRef = ref(db, "users");
+        const snapshot = await get(dbRef);
+        
+        let usernameSudahAda = false;
+        if (snapshot.exists()) {
+            snapshot.forEach((child) => {
+                if(child.val().username === user) usernameSudahAda = true;
+            });
+        }
+
+        if(usernameSudahAda) {
+            alert("Username sudah terdaftar!");
+            return;
+        }
+
+        const newUserRef = push(ref(db, "users"));
+        await set(newUserRef, dataUser);
+
+        console.log("Data berhasil masuk!");
+        alert("Pendaftaran Berhasil!");
+        window.location.href = "login.html";
+
+    } catch (error) {
+        console.error("Kesalahan Firebase:", error);
+        alert("Gagal menyimpan data: " + error.message); // Perbaikan typo dari 'lert'
+    }
+}
+</script>
+</body>
+</html> 

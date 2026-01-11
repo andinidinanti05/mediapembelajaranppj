@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJTJ | SMKN 9 Garut</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style> /* Pastikan di style.css ada aturan seperti ini */
+.guru-card {
+    display: flex;
+    flex-direction: row; /* Desktop: Berdampingan */
+    gap: 20px;
+    flex-wrap: wrap;    /* Agar bisa turun ke bawah */
+}
+
+.screenshot-box img {
+    max-width: 100%; /* Gambar tidak akan keluar dari kotak */
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Update Style untuk Petunjuk */
+.petunjuk-step {
+    flex-direction: column !important; /* Memaksa elemen berurutan atas ke bawah */
+    align-items: flex-start;
+}
+
+.petunjuk-step .guru-text {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.screenshot-box {
+    display: grid;
+    /* Membuat grid 2 kolom (bisa disesuaikan jadi 3 atau 1) */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 15px;
+    width: 100%;
+}
+
+.screenshot-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.screenshot-box img:hover {
+    transform: scale(1.02);
+}
+
+/* Penyesuaian angka langkah */
+.step-number {
+    background: #e93538;
+    color: white;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .guru-card {
+        flex-direction: column; /* Mobile: Tumpuk ke bawah */
+        text-align: center;
+    }
+}
+</style>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <div class="brand">
+            <img src="img/logo-smkn9.png" alt="Logo SMKN 9 Garut" class="logo">
+            <div class="brand-text">
+                <h1>SMKN 9 Garut</h1>
+                <span>Media Pembelajaran TJKT</span>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Beranda</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+
+    <div class="icon-bg">
+        <span>🌐</span>
+        <span>📡</span>
+        <span>🖧</span>
+        <span>💻</span>
+        <span>🔗</span>
+    </div>
+
+    <div class="hero-content">
+        <h3 class="subtitle reveal">MEDIA PEMBELAJARAN</h3>
+
+        <h1 class="title reveal">
+            PERENCANAAN DAN<br>
+            PENGALAMATAN JARINGAN
+        </h1>
+
+        <p class="desc reveal">
+            Website ini digunakan sebagai media pembelajaran mata pelajaran
+            <strong>Perencanaan dan Pengalamatan Jaringan (PJTJ)</strong>
+            pada Jurusan Teknik Komputer Jaringan dan Telekomunikasi (TJKT)
+            Kelas XI SMK Negeri 9 Garut.
+        </p>
+    </div>
+
+</section>
+
+<!-- ================= INFORMASI GURU ================= -->
+<section class="guru-section">
+
+    <!-- JUDUL TERPISAH -->
+    <div class="guru-title-box reveal">
+        <h2>INFORMASI GURU PENGAMPU</h2>
+    </div>
+
+    <!-- KOTAK GURU -->
+    <div class="guru-card reveal">
+
+        <!-- KIRI : INFORMASI -->
+        <div class="guru-text">
+            <p><span>Nama Guru     :</span> Ikeu Suryani, S.Pd</p>
+            <p><span>Mata Pelajaran:</span> Perencanaan dan Pengalamatan Jaringan</p>
+            <p><span>Jurusan:</span> Teknik Jaringan Komputer dan Telekomunikasi</p>
+            <p><span>Sekolah:</span> SMK Negeri 9 Garut</p>
+        </div>
+
+        <!-- KANAN : FOTO -->
+        <div class="guru-photo">
+            <img src="img/ibu-ikeu.jpeg" alt="Foto Guru">
+        </div>
+
+    </div>
+
+    <!-- ================= INFORMASI MATA PELAJARAN ================= -->
+    <div class="guru-title-box reveal" style="background-color: #e93538;">
+        <h2>INFORMASI MATA PELAJARAN</h2>
+    </div>
+
+    <div class="guru-card reveal">
+        <div class="guru-text">
+            <p>Mata pelajaran <strong>Perencanaan dan Pengalamatan Jaringan</strong> adalah bagian penting dalam kurikulum Teknik Komputer dan Jaringan (TKJ) yang mengajarkan siswa cara merancang topologi dan arsitektur jaringan, mengumpulkan kebutuhan pengguna, memilih teknologi, serta melakukan pengalamatan IP yang efisien menggunakan metode seperti CIDR dan VLSM, termasuk subnetting untuk membagi jaringan.</p>
+            <p>Materi ini membekali siswa dengan kemampuan dasar membangun dan mengkonfigurasi jaringan, termasuk memahami konsep dasar IP Address (IPv4 & IPv6) dan implementasinya.</p>
+            <p>Konsep Utama yang Dipelajari:</p>
+            <ul>
+                <li>Perencanaan Jaringan: Merancang kebutuhan perangkat, topologi (Star, Bus, Ring, Mesh), dan arsitektur jaringan agar efisien.</li>
+                <li>Pengalamatan Jaringan: Memberikan alamat unik (IP Address) untuk setiap perangkat agar bisa berkomunikasi.</li>
+                <li>CIDR (Classless Inter-Domain Routing): Metode membagi jaringan lebih fleksibel daripada pengalamatan kelas tradisional.</li>
+                <li>VLSM (Variable Length Subnet Mask): Teknik membagi jaringan menjadi subnet berbeda untuk menghemat IP.</li>
+                <li>Subnetting: Memecah satu jaringan besar menjadi subnet kecil.</li>
+                <li>IPv4 dan IPv6: Memahami perbedaan dan penerapan alamat IP.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= PETUNJUK PENGGUNAAN ================= -->
+    <div class="guru-title-box reveal" style="background-color: #e93538;">
+    <h2>PETUNJUK PENGGUNAAN</h2>
+</div>
+
+<div class="petunjuk-section reveal">
+
+    <div class="guru-card petunjuk-step reveal">
+        <div class="guru-text">
+            <div class="step-number">1</div>
+            <h3>Daftar Akun dan Login</h3>
+            <p>Pada halaman Utama di pojok kanan atas ada tombol Login. Untuk masuk ke halaman pembelajaran, pengguna diwajibkan untuk membuat akun terlebih dahulu, setelah itu Login menggunakan akun yang telah didaftarkan.</p>
+        </div>
+        
+        <div class="screenshot-box">
+            <img src="img/halaman utama.jpeg" alt="Halaman Utama">
+            <img src="img/daftar.jpeg" alt="Form Pendaftaran">
+            <img src="img/login.jpeg" alt="Form Login">
+        </div>
+    </div>
+
+    <div class="guru-card petunjuk-step reveal">
+        <div class="guru-text">
+            <div class="step-number">2</div>
+            <h3>Halaman Dashboard</h3>
+            <p>Pilih materu yang akan di pelajari. Contohnya disini, kita ingin belajar materi tentang "PERENCANAAAN TOPOLOGI JARINGAN" kemudian KLIK Menu itu. </p>
+        </div>
+        <div class="screenshot-box">
+            <img src="img/dashboard.jpeg" alt="Dashboard Materi">
+        </div>
+    </div>
+
+</div>
+
+        <div class="guru-card petunjuk-step">
+            <div class="guru-text">
+                <div class="step-number">2</div>
+                <h3>Pelajari Materi Per Indikator</h3>
+                <p>Setelah memilih materi yang akan dipelajari.
+                    Pada bagian ini, kita harus menjalankan atau membuka tiap indikator secara bertahap hingga Kuis Akhir. 
+                    Tiap Indikator berisi Materi, Video Dan Kuis. Untuk membuka Indikator lain hingga kuis akhir, maka 
+                    users harus menyelesaikan kuis-kuis yang ada di tiap indikator secara bertahap.
+                </p>
+            </div>
+            <div class="screenshot-box">
+                <img src="img/kuis.jpeg" alt="Screenshot Menu HP">
+                <img src="img/lanjut leaderboard.jpeg" alt="Screenshot Menu HP">
+                <img src="img/hasil kuis indikator.jpeg" alt="Screenshot Menu HP">
+            </div>
+        </div>
+
+        <div class="guru-card petunjuk-step">
+            <div class="guru-text">
+                <div class="step-number">3</div>
+                <h3>Kerjakan Hingga Kuis Akhir </h3>
+                <p>Setelah semua kuis indikator terselesaikan maka, lanjutkan dengan mengisi kuis akhir.
+                    Setelah mengisi kuis Akhir, user akan di arahkan ke halaman Laporan Nilai Akhir yang di dalamnya berisi 
+                    Nilai Akhir, Status kelulusan, Unduh Sertifikat dan Rincian Nilai Akhir. 
+                </p>
+            </div>
+            <div class="screenshot-box">
+                <img src="img/kuis akhir.jpeg" alt="Screenshot Materi HP">
+                <img src="img/hasil kuis akhir.jpeg" alt="Screenshot Materi HP">
+                <img src="img/laporan nilai.jpeg" alt="Screenshot Materi HP">
+                <img src="img/rincian nilai.jpeg" alt="Screenshot Materi HP">
+            </div>
+        </div>
+
+    </div>
+
+<!-- ================= TOMBOL BELAJAR ================= -->
+<div class="learn-section reveal">
+    <a href="login.html" class="learn-button">KLIK UNTUK BELAJAR</a>
+</div>
+
+<!-- ================= MEDIA SOSIAL ================= -->
+<div class="social-section reveal">
+    <a href="https://www.instagram.com/smkn9garutofficial?igsh=cGJtYzN2d283aWZ0" class="social-icon ig" target="_blank">◎</a>
+    <a href="https://www.facebook.com/groups/205905442754160/?ref=share&mibextid=KtfwRi" class="social-icon fb" target="_blank">f</a>
+    <a href="https://youtube.com/@sagarofficial8446?si=wugL-7nL9BY7LoCP" class="social-icon yt" target="_blank">▶</a>
+</div>
+
+<!-- ================= INFORMASI KONTAK ================= -->
+<div class="contact-info reveal">
+    <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <p>Jl. Raya Bayongbong, Kabupaten Garut</p>
+    </div>
+
+    <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <p>+6285222248881</p>
+    </div>
+
+    <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <p>smkn9garut@gmail.com</p>
+    </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <p>©2025 PTI IPI Garut - Karlina, Andini, Bunga. </p>
+</footer>
+
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

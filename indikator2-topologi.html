@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Indikator 2 | Topologi Jaringan</title>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+
+
+/* ====== FORCE HEADER SAME AS MATERI ====== */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+
+
+    background:rgba(52,70,163,0.55); /* TRANSPARAN */
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+
+
+    z-index:999;
+
+}
+
+
+
+
+
+.brand-text h1{
+
+    font-weight:700 !important;
+
+    line-height:1.2 !important;
+
+}
+
+
+
+nav ul li a{
+
+    font-weight:600 !important;
+
+}
+
+
+
+
+
+.gradient-text{
+
+    background: linear-gradient(
+
+        90deg,
+
+        #e93538,
+
+        #ff6f61,
+
+        #f8c471
+
+    );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    font-weight: 700;
+
+}
+
+
+
+
+
+/* ================= GLOBAL ================= */
+
+body{
+
+    margin:0;
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(180deg,#2f3e8f,#1a2a6c);
+
+    color:#ffffff;
+
+}
+
+
+
+/* ================= CONTAINER ================= */
+
+.container{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:120px 20px 60px;
+
+}
+
+
+
+/* ================= CARD ================= */
+
+.card{
+
+    background:rgba(255,255,255,0.12);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+    border:1px solid rgba(255,255,255,0.18);
+
+    max-width:750px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+
+
+
+
+
+
+/* ================= JUDUL ================= */
+
+
+
+
+
+.card h2:first-child{
+
+    color:inherit;
+
+}
+
+
+
+/* ================= LIST ================= */
+
+.card ul{
+
+    padding-left:18px;
+
+}
+
+
+
+.card ul li{
+
+
+
+    text-align: justify;
+
+    hyphens: auto;
+
+}
+
+
+
+/* ================= VIDEO ================= */
+
+.video-wrapper{
+
+    position:relative;
+
+    padding-top:56.25%;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#000;
+
+}
+
+
+
+.video-wrapper iframe{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    border:none;
+
+}
+
+
+
+/* ================= QUIZ ================= */
+
+.quiz-item{
+
+    margin-bottom:22px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,0.10);
+
+}
+
+
+
+.quiz-item p{
+
+    margin-top:0;
+
+    font-weight:500;
+
+}
+
+
+
+.quiz-item label{
+
+    display:block;
+
+    margin:8px 0;
+
+    cursor:pointer;
+
+}
+
+
+
+/* ================= BUTTON ================= */
+
+.btn{
+
+    padding:12px 34px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(90deg,#ff4d4d,#ff7b54);
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.btn:hover{
+
+    opacity:.9;
+
+    transform:scale(1.03);
+
+}
+
+
+
+.btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+
+
+/* ================= KUNCI ================= */
+
+.kunci{
+
+    margin-top:12px;
+
+    padding:12px 16px;
+
+    background:#eafaf1;
+
+    color:#145a32;
+
+    border-left:4px solid #2ecc71;
+
+    border-radius:10px;
+
+}
+
+
+
+/* ================= JUDUL CARD FIX SESUAI MATERI UTAMA ================= */
+
+.card h2{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-top:0;
+
+    margin-bottom:16px;
+
+    letter-spacing:0.4px;
+
+
+
+    background: linear-gradient(
+
+        90deg,
+
+        #e93538,
+
+        #ff6f61,
+
+        #f8c471
+
+    );
+
+
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+}
+
+
+
+/* ================= HEADER MATERI LAYOUT ================= */
+
+.materi-header{
+
+    max-width:900px;
+
+    margin:0 auto 40px;
+
+    text-align:left;
+
+}
+
+
+
+.materi-badge{
+
+    display:inline-block;
+
+    padding:6px 16px;
+
+    border-radius:10px;
+
+    font-size:13px;      /* TIDAK DIUBAH */
+
+    font-weight:600;     /* TIDAK DIUBAH */
+
+    margin-bottom:14px;
+
+
+
+    /* ⬇️ SAMA DENGAN CARD UTAMA */
+
+    background: rgba(255,255,255,0.12);
+
+    border:1px solid rgba(255,255,255,0.18);
+
+    color:#ffffff;
+
+}
+
+
+
+
+
+.materi-title{
+
+    font-size:30px;
+
+    line-height:1.25;
+
+    font-weight:800;
+
+    margin:0;
+
+}
+
+
+
+.materi-image{
+
+    margin: 30px 0;
+
+    text-align: center;
+
+}
+
+
+
+.materi-image img{
+
+    width: 100%;
+
+    max-width: 700px;   /* ⬅️ UBAH ANGKA INI */
+
+    height: auto;
+
+    border-radius: 16px;
+
+}
+
+
+
+.paragraph-justify{
+
+    text-align: justify;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:#fff;
+
+    margin-top:12px;
+
+    margin-bottom:28px;
+
+}
+
+
+
+/* ================= SUB MATERI ================= */
+
+.sub-materi{
+
+    font-size:20px;          /* ukuran lebih kecil */
+
+    font-weight:800;
+
+    margin-top:26px;
+
+    margin-bottom:10px;
+
+
+
+    background: linear-gradient(
+
+        90deg,
+
+        #e93538,
+
+        #ff6f61,
+
+        #f8c471
+
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+
+
+.sub-paragraph{
+
+    text-align: justify;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:#fff;
+
+    margin-top:12px;
+
+    margin-bottom:18px;
+
+}
+
+
+
+.section-text{
+
+    text-align: justify;
+
+    font-size:15px;
+
+    line-height:1.9;
+
+    color:#ffffff;
+
+    margin-top:14px;
+
+    margin-bottom:26px;
+
+}
+
+
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+    margin-top:18px;
+
+}
+
+
+
+.topology-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    font-size:14.5px;
+
+    color:#ffffff;
+
+}
+
+
+
+.topology-table th{
+
+    padding:14px 12px;
+
+    text-align:center;
+
+    font-weight:600;
+
+    background:rgba(255,255,255,0.12); /* SAMA SEPERTI CARD */
+
+    border:1px solid rgba(255,255,255,0.18);
+
+}
+
+
+
+.topology-table td{
+
+    padding:14px 14px;
+
+    vertical-align:top;
+
+    border-bottom:1px solid rgba(255,255,255,0.15);
+
+    line-height:1.7;
+
+}
+
+
+
+.topology-table tr:hover{
+
+    background:rgba(255,255,255,0.05);
+
+}
+
+
+
+.topology-table td strong{
+
+    color:#ffd180; /* masih aman, tidak gradasi */
+
+}
+
+
+
+.instruction-box{
+
+    display:flex;
+
+    gap:14px;
+
+    padding:16px 18px;
+
+    margin:18px 0 22px;
+
+
+
+    background:rgba(255,255,255,0.10);
+
+    border:1px solid rgba(255,255,255,0.18);
+
+    border-radius:12px;
+
+}
+
+
+
+.instruction-icon{
+
+    font-size:22px;
+
+    line-height:1;
+
+}
+
+
+
+.instruction-text{
+
+    font-size:14.5px;
+
+    line-height:1.7;
+
+    text-align:justify;
+
+    color:#ffffff;
+
+}
+
+
+
+.video-title{
+
+    font-size:30px;     /* lebih kecil dari 30px */
+
+    line-height:1.35;
+
+}
+
+
+
+/* ================= QUIZ HEADER MIRIP "MATERI PEMBELAJARAN" ================= */
+
+#quizCard h2{
+
+    position: relative;
+
+    font-size:30px;
+
+    line-height:1.25;
+
+    font-weight:800;
+
+    margin-top:32px;
+
+    margin-bottom:12px;
+
+
+
+    background: linear-gradient(
+
+        90deg,
+
+        #e93538,
+
+        #ff6f61,
+
+        #f8c471
+
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+
+
+/* ================= QUIZ = MATERI PEMBELAJARAN (100% SAMA) ================= */
+
+#quizCard h2{
+
+    position: relative;
+
+    font-size:30px;
+
+    line-height:1.25;
+
+    font-weight:800;
+
+    margin:0 0 28px 0;
+
+
+
+    background: linear-gradient(
+
+        90deg,
+
+        #e93538,
+
+        #ff6f61,
+
+        #f8c471
+
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+
+
+/* ================= FINAL LOCK JUDUL MATERI, VIDEO, QUIZ ================= */
+
+
+
+/* SATUKAN SEMUA JUDUL UTAMA */
+
+.materi-title,
+
+.video-title,
+
+#quizCard h2{
+
+    font-size:25px !important;
+
+    line-height:1.25 !important;
+
+    font-weight:800 !important;
+
+
+
+    background: linear-gradient(
+
+        90deg,
+
+        #e93538,
+
+        #ff6f61,
+
+        #f8c471
+
+    ) !important;
+
+
+
+    -webkit-background-clip:text !important;
+
+    -webkit-text-fill-color:transparent !important;
+
+}
+
+
+
+/* ===== FIX JARAK BADGE ↔ JUDUL QUIZ (FINAL & PRESISI) ===== */
+
+#quizCard .materi-badge{
+
+    margin-bottom:6px !important;
+
+}
+
+
+
+#quizCard .materi-title{
+
+    margin-top:0 !important;
+
+    line-height:1.25 !important;
+
+}
+
+
+
+#quizCard .materi-header{
+
+    padding-top:0 !important;
+
+}
+
+
+
+/* ================= SCROLL ANIMATION ================= */
+
+.animate{
+
+    opacity: 0;
+
+    transform: translateY(32px);
+
+    transition:
+
+        opacity 0.6s ease,
+
+        transform 0.6s ease;
+
+    will-change: opacity, transform;
+
+}
+
+
+
+.animate.show{
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+
+/* Highlight jawaban */
+
+.quiz-item label {
+
+  display: block;
+
+  padding: 8px 10px;
+
+  margin: 6px 0;
+
+  border-radius: 8px;
+
+  transition: .3s;
+
+}
+
+
+
+.quiz-item label.benar {
+
+  background: #e9f8f0;
+
+  border-left: 5px solid #2ecc71;
+
+  color: #145a32;
+
+}
+
+
+
+.quiz-item label.salah {
+
+  background: #fdeaea;
+
+  border-left: 5px solid #e74c3c;
+
+  color: #7b241c;
+
+}
+
+
+
+.quiz-item label.normal {
+
+  background: #f4f4f4;
+
+  color: #555;
+
+}
+
+
+
+.quiz-item input[type="radio"] {
+
+  pointer-events: none;
+
+}
+
+
+
+/* Overlay */
+
+.popup-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,.5);
+
+  backdrop-filter: blur(4px);
+
+  display: none;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 9999;
+
+}
+
+
+
+/* Box */
+
+.popup-box {
+
+    background: #ffffff;
+
+    width: 95%;
+
+    max-width: 450px;
+
+    padding: 40px 30px;
+
+    border-radius: 30px;
+
+    text-align: center;
+
+    position: relative;
+
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+
+    border: none;
+
+    color: #1f2937;
+
+}
+
+
+
+/* ===== FIX WARNA TEKS POPUP ===== */
+
+.popup-box {
+
+  color: #1f2937; /* teks popup jadi gelap */
+
+}
+
+
+
+.popup-box * {
+
+  color: inherit;
+
+}
+
+
+
+
+
+/* Icon */
+
+.popup-icon {
+
+  font-size: 60px;
+
+  margin-bottom: 10px;
+
+  animation: bounce 1.2s infinite;
+
+}
+
+
+
+.popup-box.success {
+
+  border-top: 6px solid #2ecc71;
+
+}
+
+
+
+.popup-box.fail {
+
+  border-top: 6px solid #e74c3c;
+
+}
+
+
+
+/* Text */
+
+.popup-message {
+
+  margin-top: 12px;
+
+  font-weight: 600;
+
+}
+
+
+
+.popup-actions {
+
+  margin-top: 20px;
+
+}
+
+
+
+.popup-actions .btn{
+
+  padding:12px 34px;
+
+  border:none;
+
+  border-radius:14px;
+
+  cursor:pointer;
+
+
+
+  /* ⬇️ WARNA TOMBOL */
+
+  background: linear-gradient(135deg,#ff9800,#ff5722);
+
+  color:#ffffff !important;   /* ⬅️ OK PUTIH (FIX) */
+
+
+
+  font-size:15px;
+
+  font-weight:600;
+
+  font-family:'Poppins',sans-serif;
+
+
+
+  box-shadow:0 10px 22px rgba(255,87,34,.35);
+
+  transition:all .3s ease;
+
+}
+
+
+
+.popup-actions .btn:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:0 14px 30px rgba(255,87,34,.45);
+
+}
+
+
+
+.popup-actions .btn:active{
+
+  transform:scale(.96);
+
+}
+
+
+
+.popup-box.success .popup-actions .btn{
+
+  background: linear-gradient(135deg,#2ecc71,#27ae60);
+
+}
+
+
+
+.popup-box.fail .popup-actions .btn{
+
+  background: linear-gradient(135deg,#e74c3c,#c0392b);
+
+}
+
+/* ================= CARD LEADERBOARD ORANGE ================= */
+.card-leaderboard {
+    margin-top: 25px;
+    background: rgba(255, 154, 60, 0.05); 
+    border: 2px dashed #ff8c00; 
+    text-align: center;
+    padding: 30px;
+}
+
+.text-leaderboard {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #ff8c00;
+    font-weight: 600;
+}
+
+.btn-leaderboard {
+    background: linear-gradient(90deg, #ff8c00, #ffae00);
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3);
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-leaderboard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+
+
+
+
+/* Animations */
+
+@keyframes popupIn {
+
+  from {
+
+    transform: scale(.6);
+
+    opacity: 0;
+
+  }
+
+  to {
+
+    transform: scale(1);
+
+    opacity: 1;
+
+  }
+
+}
+
+
+
+@keyframes bounce {
+
+  0%,100% { transform: translateY(0); }
+
+  50% { transform: translateY(-6px); }
+
+}
+
+
+
+
+
+@keyframes popScale{
+
+    from{transform:scale(.7);opacity:0}
+
+    to{transform:scale(1);opacity:1}
+
+}
+
+
+
+@keyframes popupOut {
+
+  to {
+
+    transform: scale(.7);
+
+    opacity: 0;
+
+  }
+
+}
+
+
+
+
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="brand">
+
+            <img src="img/logo-smkn9.png" class="logo">
+
+            <div class="brand-text">
+
+                <h1>SMKN 9 Garut</h1>
+
+                <span>Media Pembelajaran TJKT</span>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li><a href="dashboard.html">Materi</a></li>
+
+                <li><a href="login.html">Logout</a></li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<div class="container">
+
+
+
+<!-- ================= MATERI ================= -->
+
+<div class="card animate">
+
+<div class="materi-header">
+
+    <span class="materi-badge">📘Materi Pembelajaran</span>
+
+
+
+    <h1 class="materi-title gradient-text">
+
+        Membuat rancangan (desain) topologi jaringan sederhana sesuai kebutuhan dan skenario yang diberikan.
+
+    </h1>
+
+</div>
+
+
+
+<!-- ===== SPACE GAMBAR ===== -->
+
+<div class="materi-image">
+
+    <img src="img/rancangan-topologi.jpeg" alt="Ilustrasi Topologi Jaringan">
+
+</div>
+
+
+
+<!-- ===== SUB JUDUL A ===== -->
+
+<h3 class="sub-materi">
+
+    A. Analisis Kebutuhan Jaringan
+
+</h3>
+
+
+
+<p class="paragraph-justify">
+
+Beberapa hal yang perlu diperhatikan dalam analisis kebutuhan antara lain:
+
+Jumlah komputer dan perangkat yang digunakan,
+
+Jarak antar ruang atau gedung,
+
+Jenis aktivitas jaringan, seperti berbagi file, akses internet, atau server lokal
+
+Contohnya, kalau jaringan hanya digunakan di satu ruangan seperti laboratorium komputer sekolah, maka topologi Star paling cocok karena mudah diatur dan dikembangkan.
+
+Tapi kalau jaringan mencakup beberapa gedung atau divisi, maka topologi Tree atau Hybrid lebih efisien.”
+
+
+
+
+
+</p>
+
+
+
+<!-- ===== SUB JUDUL B ===== -->
+
+<h3 class="sub-materi">
+
+    B. Contoh Perancangan Topologi Star Sederhana
+
+</h3>
+
+
+
+<p class="paragraph-justify">
+
+    Sekarang kita bahas contoh nyata cara merancang topologi Star sederhana.
+
+</p>
+
+
+
+<p class="paragraph-justify">
+
+    <strong>Tujuannya:</strong><br>
+
+    Membuat jaringan lokal kecil agar komputer saling terhubung untuk berbagi data.
+
+</p>
+
+
+
+<p class="paragraph-justify">
+
+    <strong>Perangkat yang dibutuhkan:</strong>
+
+</p>
+
+
+
+<ul class="list-materi">
+
+    <li>1 buah switch (misalnya Cisco 2960)</li>
+
+    <li>4 buah PC</li>
+
+    <li>4 buah kabel UTP tipe straight-through</li>
+
+</ul>
+
+
+
+<p class="paragraph-justify">
+
+    <strong>Langkah merancang di kertas atau LKPD:</strong>
+
+</p>
+
+
+
+<ol class="list-materi">
+
+    <li>Gambar sebuah switch di bagian tengah.</li>
+
+    <li>Letakkan empat PC di sekeliling switch.</li>
+
+    <li>Hubungkan setiap PC ke switch menggunakan garis sebagai kabel.</li>
+
+    <li>Beri label PC1, PC2, PC3, dan PC4.</li>
+
+    <li>Tuliskan jenis kabel yang digunakan, yaitu straight-through.</li>
+
+</ol>
+
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================= VIDEO ================= -->
+
+<div class="card animate">
+
+
+
+  <div class="materi-badge">🎥 Video Pembelajaran</div>
+
+
+
+  <h2 class="materi-title gradient-text video-title">
+
+    Video Pembelajaran Membuat rancangan (desain) topologi jaringan sederhana sesuai kebutuhan dan skenario yang diberikan.
+
+  </h2>
+
+
+
+  <!-- INSTRUKSI MENARIK -->
+
+  <div class="instruction-box">
+
+    <div class="instruction-icon">ℹ️</div>
+
+    <div class="instruction-text">
+
+      Perhatikan dan simak video pembelajaran berikut dengan saksama.
+
+      Fokuskan perhatian pada konsep dasar topologi jaringan serta
+
+      perbedaan setiap jenis topologi beserta kelebihan dan kekurangannya
+
+      sebagai bekal untuk mengerjakan kuis.
+
+    </div>
+
+  </div>
+
+
+
+  <!-- VIDEO -->
+
+  <div class="video-wrapper">
+
+  <iframe
+
+    src="https://www.youtube.com/embed/eghV4yols0M"
+
+    frameborder="0"
+
+    allowfullscreen>
+
+</iframe>
+
+  </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ================= QUIZ ================= -->
+
+<div class="card animate" id="quizCard">
+
+<div class="materi-header">
+
+    <span class="materi-badge">📝Quiz Indikator 2</span>
+
+</div>
+
+
+
+<h2 class="materi-title gradient-text video-title">
+
+    Quiz Membuat Rancangan (Desain) Topologi Jaringan Sederhana
+
+Sesuai Kebutuhan dan Skenario yang Diberikan
+
+
+
+  </h2>
+
+
+
+<div class="instruction-box">
+
+  <div class="instruction-icon">ℹ️</div>
+
+  <div class="instruction-text">
+
+    Bacalah setiap pertanyaan dengan seksama. Pilih jawaban yang menurutmu paling benar
+
+    berdasarkan materi yang telah dipelajari. Jangan lupa fokus dan jangan menebak!
+
+  </div>
+
+</div>
+
+
+
+
+
+<div class="quiz-item" data-q="q1">
+
+<p>1. Tujuan utama dari pembuatan desain topologi jaringan adalah…</p>
+
+<label><input type="radio" name="q1" value="A"> Menghubungkan komputer dengan internet</label>
+
+<label><input type="radio" name="q1" value="B"> Membuat rancangan topologi sesuai kebutuhan dan skenario</label>
+
+<label><input type="radio" name="q1" value="C"> Menentukan jenis kabel jaringan</label>
+
+<label><input type="radio" name="q1" value="D"> Menambah jumlah perangkat jaringan</label>
+
+</div>
+
+
+
+
+
+<div class="quiz-item" data-q="q2">
+
+<p>2. Mengapa analisis kebutuhan jaringan perlu dilakukan sebelum membuat desain topologi?</p>
+
+<label><input type="radio" name="q2" value="A"> Agar desain terlihat rapi</label>
+
+<label><input type="radio" name="q2" value="B"> Agar mudah menggunakan Cisco Packet Tracer</label>
+
+<label><input type="radio" name="q2" value="C"> Agar rancangan sesuai kondisi lapangan</label>
+
+<label><input type="radio" name="q2" value="D"> Agar jaringan bisa digunakan tanpa switch</label>
+
+</div>
+
+
+
+
+
+
+
+<div class="quiz-item" data-q="q3">
+
+<p>3. Berikut ini yang termasuk dalam analisis kebutuhan jaringan adalah…</p>
+
+<label><input type="radio" name="q3" value="A"> Warna kabel jaringan</label>
+
+<label><input type="radio" name="q3" value="B"> Jumlah komputer dan perangkat</label>
+
+<label><input type="radio" name="q3" value="C"> Merek komputer</label>
+
+<label><input type="radio" name="q3" value="D"> Sistem operasi yang digunakan</label>
+
+</div>
+
+
+
+
+
+<div class="quiz-item" data-q="q4">
+
+<p>4. Salah satu hal yang perlu diperhatikan dalam analisis kebutuhan jaringan adalah…</p>
+
+<label><input type="radio" name="q4" value="A"> Jenis monitor komputer</label>
+
+<label><input type="radio" name="q4" value="B"> Jarak antar ruang atau gedung</label>
+
+<label><input type="radio" name="q4" value="C"> Ukuran meja komputer</label>
+
+<label><input type="radio" name="q4" value="D"> Warna switch jaringan</label>
+
+</div>
+
+
+
+
+
+
+
+<div class="quiz-item" data-q="q5">
+
+<p>5. Aktivitas jaringan yang disebutkan dalam skrip adalah, kecuali…</p>
+
+<label><input type="radio" name="q5" value="A"> Berbagi file</label>
+
+<label><input type="radio" name="q5" value="B"> Akses internet</label>
+
+<label><input type="radio" name="q5" value="C"> Server lokal</label>
+
+<label><input type="radio" name="q5" value="D"> Editing video</label>
+
+</div>
+
+
+
+
+
+<div id="quizActions" class="quiz-actions">
+  <button id="submitBtn" class="btn" onclick="submitQuiz()">Submit Quiz</button>
+</div>
+
+<div class="card card-leaderboard" id="cardLeaderboard" style="display: none;">
+    <p class="text-leaderboard">
+        ✨ Kamu sudah mengerjakan kuis ini. <br> 
+        Coba lihat peringkat Kamu di antara teman-teman yang lain! 😊
+    </p>
+    <button class="btn-leaderboard" onclick="location.href='leaderboard.html?indikator=2'">
+        🏆 Lihat Leaderboard Anda
+    </button>
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<!-- ================= POPUP HASIL QUIZ ================= -->
+
+<div id="popup" class="popup-overlay">
+
+  <div id="popupBox" class="popup-box">
+
+    <div class="popup-icon" id="popupIcon"></div>
+
+
+
+    <h2 id="popupTitle"></h2>
+
+    <p id="popupScore"></p>
+
+    <p id="popupTime"></p>
+
+
+
+    <p id="popupMessage" class="popup-message"></p>
+
+
+
+    <div id="popupActions" class="popup-actions"></div>
+
+  </div>
+
+</div>
+
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBe9Yjx2G7IXl8nV57SzX06EpHb9aW57MA",
+
+    authDomain: "mediabelajarppj.firebaseapp.com",
+
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId: "mediabelajarppj",
+
+    storageBucket: "mediabelajarppj.appspot.com",
+
+    messagingSenderId: "817031276394",
+
+    appId: "1:817031276394:web:fd91df17cfe6a0f262e713"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+
+
+const userId = localStorage.getItem("userLogin");
+
+if (!userId) {
+
+    alert("Silakan login terlebih dahulu!");
+
+    location.href = "login.html";
+
+}
+
+
+
+// === KONFIGURASI ===
+
+const indikator = 2;
+
+const KKM = 70;
+
+let startTime = Date.now();
+
+let userData = {}; // Untuk menyimpan role, kelas, dll
+
+
+
+const jawaban = { q1: "B", q2: "C", q3: "B", q4: "B", q5: "D" };
+
+
+
+// Penjelasan (Tetap seperti kode Anda)
+
+const penjelasan = {
+
+    q1: { benar: "Perencanaan berfungsi memberikan gambaran menyeluruh...", salah: "Pilihan lain hanya berkaitan dengan hasil tertentu." },
+
+    q2: { benar: "Pemahaman konteks menjadi dasar agar rancangan optimal.", salah: "Tanpa kondisi nyata, hasil tidak efisien." },
+
+    q3: { benar: "Banyaknya perangkat memengaruhi kapasitas jaringan.", salah: "Aspek estetika tidak memengaruhi fungsi utama." },
+
+    q4: { benar: "Jarak fisik berpengaruh pada media transmisi.", salah: "Perlengkapan non-jaringan tidak berdampak teknis." },
+
+    q5: { benar: "Aktivitas yang dihitung adalah pertukaran data.", salah: "Editing video tidak berhubungan langsung dengan layanan jaringan." }
+
+};
+
+
+
+// === INISIALISASI DATA ===
+
+async function init() {
+
+    const userSnap = await get(ref(db, `users/${userId}`));
+
+    if (userSnap.exists()) {
+
+        userData = userSnap.val();
+
+    }
+
+   
+
+    // Cek waktu mulai agar tidak reset saat refresh
+
+    const waktuRef = ref(db, `users/${userId}/kuis/indikator2/waktuMulai`);
+
+    const waktuSnap = await get(waktuRef);
+
+    if (waktuSnap.exists()) {
+
+        startTime = waktuSnap.val();
+
+    } else {
+
+        await set(waktuRef, startTime);
+
+    }
+
+
+
+    await cekSudahLulusFirebase();
+
+}
+
+
+
+async function cekSudahLulusFirebase() {
+
+    const snap = await get(ref(db, `users/${userId}/kuis/indikator2`));
+
+    if (snap.exists() && snap.val().lulus === true) {
+
+        kunciKuis();
+
+        tampilkanReviewLengkap(snap.val(), true);
+
+        tampilTombolLeaderboard();
+
+    }
+
+}
+
+
+
+
+
+function dapatkanWaktuSekarang() {
+
+    const d = new Date();
+
+    const tanggal = d.getDate().toString().padStart(2, '0');
+
+    const bulan = (d.getMonth() + 1).toString().padStart(2, '0'); // Bulan mulai dari 0
+
+    const tahun = d.getFullYear();
+
+    const jam = d.getHours().toString().padStart(2, '0');
+
+    const menit = d.getMinutes().toString().padStart(2, '0');
+
+   
+
+    return `${tanggal}/${bulan}/${tahun} - ${jam}:${menit} WIB`;
+
+}
+
+
+
+// === LOGIKA SUBMIT ===
+
+window.submitQuiz = async function() {
+
+    let benar = 0;
+
+    let jawabanSiswa = {};
+
+
+
+    Object.keys(jawaban).forEach(k => {
+
+        const j = document.querySelector(`input[name="${k}"]:checked`);
+
+        if (j) {
+
+            jawabanSiswa[k] = j.value;
+
+            if (j.value === jawaban[k]) benar++;
+
+        }
+
+    });
+
+
+
+    // Validasi: Pastikan semua soal dijawab (Opsional tapi disarankan)
+
+    if (Object.keys(jawabanSiswa).length < Object.keys(jawaban).length) {
+
+        alert("Harap jawab semua pertanyaan sebelum submit!");
+
+        return;
+
+    }
+
+
+
+    const nilai = benar * 20;
+
+    const waktu = Math.floor((Date.now() - startTime) / 1000);
+
+
+
+    try {
+
+        // Ambil data profil terbaru untuk memastikan Role & Nama ada
+
+        const userRef = ref(db, `users/${userId}`);
+
+        const userSnap = await get(userRef);
+
+        const profil = userSnap.val() || {};
+
+
+
+        console.log("Memulai proses simpan untuk:", profil.nama);
+
+
+
+        // ... di dalam try block fungsi submitQuiz ...
+
+
+
+if (nilai >= KKM) {
+
+    // 1. Simpan ke Leaderboard Global
+
+    await set(ref(db, `leaderboard/indikator2/${userId}`), {
+
+        nama: profil.nama || "Siswa Tanpa Nama",
+
+        nilai: nilai,
+
+        waktu: waktu,
+
+        role: profil.role || "Lainnya",
+
+        sebagai: profil.sebagai || "Umum",
+
+        waktuSelesai: dapatkanWaktuSekarang(), // <-- GANTI INI
+
+        timestamp: Date.now() // Tetap simpan ini untuk pengurutan otomatis di script leaderboard
+
+    });
+
+   
+
+    localStorage.setItem(`lulus_i2_${userId}`, "true");
+
+}
+
+
+
+// 2. Simpan history kuis di folder user
+
+await set(ref(db, `users/${userId}/kuis/indikator2`), {
+
+    nilai: nilai,
+
+    waktu: waktu,
+
+    lulus: nilai >= KKM,
+
+    jawaban: jawabanSiswa,
+
+    tanggalDikerjakan: dapatkanWaktuSekarang() // <-- GANTI INI
+
+});
+
+
+
+        console.log("Simpan berhasil!");
+
+        tampilPopup(nilai, waktu);
+
+
+
+    } catch (error) {
+
+        console.error("Gagal menyimpan ke Firebase:", error);
+
+        alert("Koneksi gagal atau izin ditolak! Cek Firebase Rules Anda.");
+
+    }
+
+}
+
+
+
+// === FUNGSI POPUP ===
+
+function tampilPopup(nilai, waktu){
+
+    const popup = document.getElementById("popup");
+
+    const popupBox = document.getElementById("popupBox");
+
+    document.getElementById("popupScore").innerHTML = `Nilai: <b>${nilai}</b>`;
+
+    document.getElementById("popupTime").innerHTML = `Waktu: <b>${waktu} detik</b>`;
+
+   
+
+    popup.style.display = "flex";
+
+    if (nilai < KKM) {
+
+        popupBox.className = "popup-box fail";
+
+        document.getElementById("popupIcon").innerHTML = "❌";
+
+        document.getElementById("popupTitle").innerText = "Belum Lulus";
+
+        document.getElementById("popupMessage").innerText = "Nilaimu masih di bawah KKM (70).";
+
+        document.getElementById("popupActions").innerHTML = `<button class="btn" onclick="tutupPopup(); location.reload();">Ulangi</button>`;
+
+    } else {
+
+        popupBox.className = "popup-box success";
+
+        document.getElementById("popupIcon").innerHTML = "🎉";
+
+        document.getElementById("popupTitle").innerText = "Selamat!";
+
+        document.getElementById("popupMessage").innerText = "Kamu lulus Indikator 2!";
+
+        document.getElementById("popupActions").innerHTML = `<button class="btn" onclick="tutupPopup(); tampilTombolLeaderboard();">OK</button>`;
+
+    }
+
+}
+
+
+
+window.tutupPopup = function() {
+
+    document.getElementById("popup").style.display = "none";
+
+}
+
+
+
+// Fungsi Penunjang (Kunci Kuis, Review, dll tetap pakai punya Anda)
+
+function kunciKuis(){
+
+    const btn = document.getElementById("submitBtn");
+
+    if(btn) {
+
+        btn.disabled = true;
+
+        btn.innerText = "Kuis Sudah Dikerjakan";
+
+    }
+
+    document.querySelectorAll("input[type=radio]").forEach(r => r.disabled = true);
+
+}
+
+
+
+function tampilkanReviewLengkap(data, isLulus) {
+
+    const actions = document.getElementById("quizActions");
+
+    Object.keys(jawaban).forEach(k => {
+
+        const item = document.querySelector(`[data-q="${k}"]`);
+
+        if (!item) return;
+
+        const userJawab = data.jawaban?.[k];
+
+        const benar = jawaban[k];
+
+        const labels = item.querySelectorAll("label");
+
+
+
+        labels.forEach(label => {
+
+            const input = label.querySelector("input");
+
+            const val = input.value;
+
+            input.checked = (val === userJawab);
+
+            if (val === benar) label.classList.add("benar");
+
+            else if (val === userJawab) label.classList.add("salah");
+
+            else label.classList.add("normal");
+
+        });
+
+
+
+        const info = document.createElement("div");
+
+        info.className = "kunci";
+
+        info.innerHTML = userJawab === benar ? `✅ <b>Benar:</b> ${penjelasan[k].benar}` : `❌ <b>Salah:</b> ${penjelasan[k].salah}`;
+
+        item.appendChild(info);
+
+    });
+
+    if (!isLulus) actions.innerHTML = `<button class="btn" onclick="location.reload()">Ulangi Kuis</button>`;
+
+}
+
+
+
+function tampilTombolLeaderboard(){
+    const cardLB = document.getElementById("cardLeaderboard");
+    if (cardLB) {
+        cardLB.style.display = "block";
+        // Tambahkan animasi jika ada
+        cardLB.style.animation = "popScale 0.5s ease forwards";
+    }
+    
+    // Pastikan tombol submit kuis disembunyikan jika sudah dikerjakan
+    const actions = document.getElementById("quizActions");
+    if (actions) {
+        actions.style.display = "none";
+    }
+}
+
+
+// Jalankan Init
+
+init();
+
+
+
+// Scroll Animation
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".animate").forEach(el => observer.observe(el));
+
+</script>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p>©2025 PTI IPI Garut - Karlina, Andini, Bunga.</p>
+
+</footer>
+
+
+
+</body>
+
+</html>

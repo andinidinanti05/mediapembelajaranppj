@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan Nilai Akhir Topologi Jaringan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* ===== RESPONSIVE FIXES ===== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #1f2e7a, #1a2560);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 100px 15px 50px; /* Jarak atas disesuaikan untuk navbar */
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, .15);
+  backdrop-filter: blur(10px);
+}
+
+/* Tabel Responsif */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Scroll horizontal jika tabel terlalu lebar di HP */
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 400px; /* Mencegah tabel terlalu menciut */
+}
+
+thead th {
+  padding: 12px;
+  background: rgba(255, 255, 255, .15);
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* Menengahkan semua teks di dalam tabel (header, body, dan footer) */
+table th, table td {
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+/* Khusus untuk mempercantik baris hasil akhir */
+tfoot td {
+  padding: 20px 10px; /* Memberi ruang lebih luas agar terlihat sebagai ringkasan */
+  background: rgba(46, 204, 113, 0.05); /* Sedikit highlight hijau transparan */
+}
+
+/* Menghapus semua perataan kanan/kiri pada tabel laporan */
+.table-container table tfoot tr td {
+    text-align: center !important;
+    justify-content: center !important;
+}
+
+/* Memastikan teks komponen di baris biasa juga tetap di tengah */
+.table-container table tbody tr td {
+    text-align: center !important;
+}
+
+/* Tipografi Responsif */
+.nilai-besar {
+  font-size: clamp(40px, 10vw, 64px); /* Ukuran teks dinamis berdasarkan layar */
+  font-weight: 800;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #ff9a3c, #ff3d3d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+button {
+  width: 100%; /* Lebar penuh di mobile */
+  max-width: 350px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #e93538, #ff6f61);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Media Queries untuk Layar Desktop */
+@media (min-width: 768px) {
+  .container { padding: 120px 20px 100px; }
+  .card { padding: 40px; }
+  button { width: auto; } /* Lebar otomatis kembali di desktop */
+}
+
+/* Gaya tambahan untuk Gradasi */
+.judul-gradasi span {
+  background: linear-gradient(90deg, #ff9a3c, #ff3d3d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="nav-container">
+    <div class="brand">
+      <img src="img/logo-smkn9.png" class="logo" alt="Logo">
+      <div class="brand-text">
+        <h1>SMKN 9 Garut</h1>
+        <span>Media Pembelajaran TJKT</span>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="dashboard.html">Materi</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="page-header" style="text-align: center; margin-bottom: 30px;">
+    <h1>📘 Laporan Nilai Akhir</h1>
+    <div class="subtitle">Evaluasi Akhir Materi Topologi Jaringan</div>
+  </div>
+
+  <div class="card">
+    <div class="hasil-utama" style="text-align: center;">
+      <p>Berikut hasil akhir pembelajaran Anda:</p>
+      <div id="nilaiAkhir" class="nilai-besar">0</div>
+      <p id="statusKelulusan" style="font-weight: 600; font-size: 18px;">Status: -</p>
+      
+      <div id="wrapperSertifikat" style="margin-top: 25px;">
+        <button id="btnUnduhSertifikat" style="display:none; background: linear-gradient(90deg, #27ae60, #2ecc71);" onclick="goToCertificate()">
+          🎓 Unduh Sertifikat Anda
+        </button>
+      </div>
+    </div>
+
+    <h3 class="judul-gradasi" style="margin-top:40px;">
+      📊 <span>Rincian Nilai</span>
+    </h3>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Komponen</th>
+            <th>Nilai</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Indikator Kuis 1</td><td id="n1">0</td></tr>
+          <tr><td>2</td><td>Indikator Kuis 2</td><td id="n2">0</td></tr>
+          <tr><td>3</td><td>Indikator Kuis 3</td><td id="n3">0</td></tr>
+          <tr><td>4</td><td>Kuis Akhir</td><td id="nAkhir">0</td></tr>
+        </tbody>
+       <tfoot>
+  <tr style="font-weight: bold; color: #2ecc71;">
+    <td></td> <td style="text-align: center !important; padding: 15px;">
+       Nilai Akhir (Gabungan) :
+    </td>
+    <td id="rataNilai" style="text-align: center !important;">0</td>
+  </tr>
+</tfoot>
+      </table>
+    </div>
+
+    <div id="penjelasanRumus" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-top: 20px;"></div>
+  </div>
+</div>
+
+<footer style="text-align: center; padding: 40px 0; opacity: 0.7; font-size: 14px;">
+  <p>©2025 PTI IPI Garut - Karlina, Andini, Bunga.</p>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const user = localStorage.getItem("userLogin");
+
+if(!user) location.href = "login.html";
+
+// Fungsi navigasi (Diekspos ke global agar onclick berfungsi)
+window.goToCertificate = function() {
+    window.location.href = 'sertifikat-topologi.html';
+}
+
+async function hitungNilaiLaporan() {
+    try {
+        const snapshot = await get(ref(db, `users/${user}`));
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            
+            // Mengambil data sesuai struktur JSON Anda
+            let i1 = Number(data.skor_i1 || 0);
+            let i2 = Number(data.kuis?.indikator2?.nilai || 0);
+            let i3 = Number(data.kuis?.indikator3?.nilai || 0);
+            let akhir = Number(data.kuis?.akhir?.nilai || 0);
+
+            // Perhitungan 40% Rata-rata Indikator + 60% Kuis Akhir
+            const rataIndikator = (i1 + i2 + i3) / 3;
+            const nilaiFinal = Math.round((rataIndikator * 0.4) + (akhir * 0.6));
+
+            // Update UI
+            document.getElementById("n1").innerText = i1;
+            document.getElementById("n2").innerText = i2;
+            document.getElementById("n3").innerText = i3;
+            document.getElementById("nAkhir").innerText = akhir;
+            document.getElementById("rataNilai").innerText = nilaiFinal; 
+            document.getElementById("nilaiAkhir").innerText = nilaiFinal;
+
+            const statusEl = document.getElementById("statusKelulusan");
+            const btnSertifikat = document.getElementById("btnUnduhSertifikat");
+
+            if(nilaiFinal >= 70) {
+                statusEl.innerHTML = "🎉 <b style='color:#2ecc71'>ANDA DINYATAKAN LULUS</b>";
+                btnSertifikat.style.display = "inline-block";
+                localStorage.setItem(`status_lulus_final_${user}`, "true");
+            } else {
+                statusEl.innerHTML = "❌ <b style='color:#ff6b6b'>ANDA BELUM LULUS</b>";
+                btnSertifikat.style.display = "none";
+                localStorage.setItem(`status_lulus_final_${user}`, "false");
+            }
+
+            document.getElementById("penjelasanRumus").innerHTML = `
+                <p style="color: #ff9a3c; font-weight: bold; margin-bottom: 5px;">📊 Detail Perhitungan:</p>
+                <small>
+                Rata-rata Indikator: (${i1} + ${i2} + ${i3}) / 3 = ${rataIndikator.toFixed(1)}<br>
+                Nilai Rata-rata: (${rataIndikator.toFixed(1)} × 40%) + (${akhir} × 60%) = <b>${nilaiFinal}</b>
+                </small>
+            `;
+        }
+    } catch (error) { 
+        console.error("Firebase Error:", error);
+    }
+}
+
+hitungNilaiLaporan();
+</script>
+</body>
+</html>

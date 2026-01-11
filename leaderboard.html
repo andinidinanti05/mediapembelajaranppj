@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard SMKN 9 Garut</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{ margin:0; font-family:'Poppins',sans-serif; background:linear-gradient(180deg,#1f2e7a,#1a2560); color:#fff; min-height:100vh; overflow-x: hidden; }
+        .container{ max-width:100%; margin:auto; padding:70px 10px 40px; }
+        .card{ background:rgba(255,255,255,0.12); border-radius:15px; padding:15px 10px; border:1px solid rgba(255,255,255,.15); margin-bottom: 25px; }
+        
+        table{ width:100%; border-collapse:collapse; table-layout: fixed; } 
+        thead th{ padding:10px 5px; background:rgba(255,255,255,.15); text-align:center; font-size: 10px; text-transform: uppercase; }
+        td{ padding:12px 5px; text-align:center; font-size: 11px; border-bottom:1px solid rgba(255,255,255,.08); word-wrap: break-word; }
+        
+        .col-rank { width: 10%; }
+        .col-nama { width: 28%; text-align: left; }
+        .col-status { width: 20%; }
+        .col-kelas { width: 15%; }
+        .col-nilai { width: 12%; }
+        .col-waktu { width: 15%; }
+
+        .rank{ font-weight:700; color: #3bd16f; }
+        .my-row { background: rgba(59, 209, 111, 0.2) !important; }
+        
+        h2{ font-size: 16px; margin: 0 0 10px 5px; display: flex; align-items: center; gap: 8px; }
+        .badge { padding: 2px 4px; border-radius: 4px; font-size: 9px; font-weight: 600; display: inline-block; }
+        .btn{ display:inline-block; padding:12px 25px; border-radius:25px; background:#3bd16f; color:#fff !important; text-decoration:none; font-weight:600; font-size: 14px; margin-top: 10px; border:none; transition: 0.3s; }
+        .btn:hover { background: #2eb35a; transform: scale(1.05); }
+        
+        @media (min-width: 600px) {
+            .container { padding: 90px 30px; max-width: 900px; }
+            td, thead th { font-size: 14px; padding: 14px; }
+            h2 { font-size: 20px; }
+            .badge { font-size: 11px; padding: 3px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="brand">
+
+            <img src="img/logo-smkn9.png" class="logo">
+
+            <div class="brand-text">
+
+                <h1>SMKN 9 Garut</h1>
+
+                <span>Media Pembelajaran TJKT</span>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li><a href="dashboard.html">Materi</a></li>
+
+                <li><a href="login.html">Logout</a></li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h1 style="font-size: 26px; margin: 0;">🏆 Leaderboard</h1>
+        <p id="subtitle" style="opacity: 0.8; font-size: 14px; margin: 5px 0 0;"></p>
+    </div>
+
+    <h2 style="color: #3bd16f;">👨‍🎓 Peringkat Siswa</h2>
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-rank">No</th>
+                    <th class="col-nama">Nama</th>
+                    <th class="col-status">Status</th>
+                    <th class="col-kelas">Kelas</th>
+                    <th class="col-nilai">Nilai</th>
+                    <th class="col-waktu">Waktu</th>
+                </tr>
+            </thead>
+            <tbody id="bodySiswa"></tbody>
+        </table>
+    </div>
+
+    <h2 style="color: #f8c471;">🌟 Peringkat Pengunjung</h2>
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-rank">No</th>
+                    <th class="col-nama">Nama</th>
+                    <th class="col-status">Status</th>
+                    <th class="col-nilai">Nilai</th>
+                    <th class="col-waktu">Waktu</th>
+                </tr>
+            </thead>
+            <tbody id="bodyLainnya"></tbody>
+        </table>
+    </div>
+
+    <div id="aksiLanjut" style="text-align:center; margin-top: 20px;"></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+// TAMBAHKAN 'set' DISINI
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const params = new URLSearchParams(window.location.search);
+const idIndikator = params.get("indikator") || "1";
+const currentUserId = localStorage.getItem("userLogin");
+
+document.getElementById("subtitle").innerText = idIndikator === "akhir" ? "Evaluasi Akhir Topologi" : "Indikator " + idIndikator;
+
+function formatWaktu(detik) {
+    const m = Math.floor(detik / 60);
+    const s = detik % 60;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+}
+
+async function fetchLeaderboard() {
+    try {
+        const usersSnap = await get(ref(db, "users"));
+        const allUsers = usersSnap.exists() ? usersSnap.val() : {};
+
+        const path = idIndikator === "akhir" ? "leaderboard/kuis_akhir" : `leaderboard/indikator${idIndikator}`;
+        const lbSnap = await get(ref(db, path));
+
+        const bodySiswa = document.getElementById("bodySiswa");
+        const bodyLainnya = document.getElementById("bodyLainnya");
+
+        if (lbSnap.exists()) {
+            let combinedData = [];
+            const rawData = lbSnap.val();
+
+            Object.keys(rawData).forEach(uid => {
+                const score = rawData[uid];
+                const profile = allUsers[uid] || {};
+                combinedData.push({
+                    uid,
+                    nama: profile.nama || score.nama || "User",
+                    role: (score.role || profile.role || "lainnya").toString().trim().toLowerCase(),
+                    roleDisplay: (score.role || profile.role || "Lainnya").toString().trim(),
+                    kelas: profile.kelas || "-",
+                    nilai: score.nilai || 0,
+                    waktu: score.waktu || 0
+                });
+            });
+
+            combinedData.sort((a, b) => b.nilai - a.nilai || a.waktu - b.waktu);
+
+            let htmlSiswa = "", htmlLainnya = "";
+            let rSiswa = 1, rLainnya = 1;
+
+            combinedData.forEach(item => {
+                const isMe = item.uid === currentUserId ? 'class="my-row"' : '';
+                const waktuTampil = formatWaktu(item.waktu);
+                
+                if (item.role === "siswa") {
+                    htmlSiswa += `<tr ${isMe}>
+                        <td class="rank">${rSiswa++}</td>
+                        <td style="text-align:left">${item.nama}</td>
+                        <td><span class="badge" style="background:#3bd16f; color:#fff">${item.roleDisplay}</span></td>
+                        <td>${item.kelas}</td>
+                        <td><b>${item.nilai}</b></td>
+                        <td>${waktuTampil}</td>
+                    </tr>`;
+                } else {
+                    htmlLainnya += `<tr ${isMe}>
+                        <td class="rank" style="color:#f8c471">${rLainnya++}</td>
+                        <td style="text-align:left">${item.nama}</td>
+                        <td><span class="badge" style="background:#f8c471; color:#000">${item.roleDisplay}</span></td>
+                        <td><b>${item.nilai}</b></td>
+                        <td>${waktuTampil}</td>
+                    </tr>`;
+                }
+            });
+
+            bodySiswa.innerHTML = htmlSiswa || '<tr><td colspan="6">Kosong</td></tr>';
+            bodyLainnya.innerHTML = htmlLainnya || '<tr><td colspan="5">Kosong</td></tr>';
+        }
+    } catch (e) { console.error(e); }
+    
+    updateNavButtons();
+}
+
+function updateNavButtons() {
+    const aksi = document.getElementById("aksiLanjut");
+    let link = ""; 
+    let teks = "";
+
+    if (idIndikator === "1") { 
+        link = "indikator2-topologi.html"; 
+        teks = "Lanjut ke Indikator 2"; 
+    } 
+    else if (idIndikator === "2") { 
+        link = "indikator3-topologi.html"; 
+        teks = "Lanjut ke Indikator 3"; 
+    } 
+    else if (idIndikator === "3") { 
+        link = "rangkuman-topologi.html"; 
+        teks = "Baca Rangkuman Materi"; 
+    } 
+    else if (idIndikator === "akhir") { 
+        // Fokus perubahan di sini
+        link = "laporan-akhir-topologi.html"; 
+        teks = "📊 Lihat Laporan Nilai Akhir & Sertifikat"; 
+    }
+
+    // Menggunakan class 'btn' agar tampilannya konsisten dengan CSS Anda
+    aksi.innerHTML = `<a href="${link}" class="btn" style="background: #e93538;">${teks}</a>`;
+}
+async function updateUserProgress() {
+    if (!currentUserId) return;
+    try {
+        let progressKey = "";
+        if (idIndikator === "1") progressKey = "progres_i1";
+        else if (idIndikator === "2") progressKey = "progres_i2";
+        else if (idIndikator === "3") progressKey = "progres_i3";
+        else if (idIndikator === "akhir") progressKey = "progres_akhir";
+
+        if (progressKey) {
+            // Ini akan membuat status di Firebase user menjadi 'tuntas'
+            await set(ref(db, `users/${currentUserId}/${progressKey}`), "tuntas");
+        }
+    } catch (e) { console.error("Gagal update progres:", e); }
+}
+
+// JALANKAN SEMUA FUNGSI
+fetchLeaderboard().then(() => {
+    updateUserProgress();
+});
+</script>
+
+<footer class="footer">
+    <p>©2025 PTI IPI Garut - Karlina, Andini, Bunga.</p>
+</footer>
+
+</body>
+</html>

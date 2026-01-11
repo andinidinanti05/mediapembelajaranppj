@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Sertifikat Kelulusan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+body{
+  margin:0;
+  background:#eaeaea;
+  font-family:Poppins,sans-serif;
+}
+
+/* ================= WRAPPER ================= */
+.wrapper{
+  max-width:1200px;
+  margin:30px auto;
+  padding:16px;
+}
+
+/* ================= A4 LANDSCAPE ================= */
+.area{
+  width:100%;
+  aspect-ratio:297 / 210;
+  position:relative;
+}
+
+/* ================= SERTIFIKAT ================= */
+.sertifikat{
+  width:100%;
+  height:100%;
+  position:relative;
+  background:url("img/bg-sertifikat.png") center/cover no-repeat;
+  padding:48px 72px;
+  box-sizing:border-box;
+}
+
+.sertifikat::before{
+  content:"";
+  position:absolute;
+  inset:16px;
+  border:3px solid #e93538;
+}
+
+/* ================= WATERMARK PENGEMBANG ================= */
+.watermark {
+  position: absolute;
+  bottom: 25px;
+  right: 35px;
+  font-size: 11px;
+  color: #555;
+  opacity: 0.8;
+  font-style: italic;
+  z-index: 10;
+}
+
+/* ================= HEADER ================= */
+.header{
+  text-align:center;
+}
+
+.logo{
+  display:flex;
+  justify-content:center;
+  gap:60px;
+  margin-bottom:12px;
+}
+
+.logo img{
+  height:65px;
+}
+
+h1{
+  margin:0;
+  font-size:36px;
+  letter-spacing:2px;
+}
+
+.nomor{
+  margin-top:6px;
+  font-size:14px;
+}
+
+/* ================= KONTEN ================= */
+.konten{
+  text-align:center;
+  margin-top:20px;
+}
+
+.nama{
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.garis-nama{
+  width:320px;
+  height:2px;
+  background:#333;
+  margin:0 auto 14px;
+}
+
+.keterangan{
+  max-width:78%;
+  margin:8px auto;
+  font-size:17px;
+  line-height:1.6;
+  font-weight:400;
+}
+
+/* ================= NILAI & TANGGAL ================= */
+.nilai-tanggal{
+  margin-top:10px;
+  margin-bottom:4px; 
+  font-size:17px; 
+  line-height:1.6;
+  font-weight:400;
+}
+
+.nilai-tanggal b{
+  font-weight:600;
+}
+
+/* ================= FOOTER (TTD) ================= */
+.footer{
+  position:absolute;
+  bottom: 150px;
+  left:72px;
+  right:72px;
+  display:flex;
+  justify-content:space-between;
+  text-align:center;
+}
+
+.ttd{
+  width:40%;
+  font-size:14px;
+}
+
+.ttd img{
+  width:38%;
+  text-align:center;
+  font-size:17px;
+  line-height:2; 
+}
+
+.nama-ttd{
+  display:inline-block;
+  border-bottom:2px solid #333;
+  padding:0 12px;
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+.nip{
+  font-size:13px;
+}
+
+/* ================= BUTTON ================= */
+.actions{
+  text-align:center;
+  margin-top:24px;
+}
+
+.actions button{
+  padding:14px 36px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,#e93538,#ff6f61);
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="area" id="areaSertifikat">
+    <div class="sertifikat">
+
+      <div class="watermark">
+        Pengembang : Karlina, Andini, Bunga.
+      </div>
+
+      <div class="header">
+        <div class="logo">
+          <img src="img/logo-smkn9.png">
+          <img src="img/logo-ipigarut.png">
+        </div>
+
+        <h1>SERTIFIKAT KELULUSAN</h1>
+
+        <div class="nomor">
+          Nomor Sertifikat: <b id="noSertifikat"></b>
+        </div>
+      </div>
+
+      <div class="konten">
+        <p>Diberikan kepada:</p>
+
+        <div class="nama" id="namaSiswa"></div>
+        <div class="garis-nama"></div>
+
+        <div class="keterangan">
+          Telah menyelesaikan dan lulus pembelajaran
+          <b>Topologi Jaringan</b> melalui media pembelajaran
+          yang dikembangkan oleh mahasiswa
+          <b>Pendidikan Teknologi Informasi Institut Pendidikan Indonesia (IPI) Garut</b>
+          Tahun Ajaran <b>2025 / 2026</b>
+        </div>
+
+        <div class="nilai-tanggal">
+          Nilai Akhir: <b id="nilaiAkhir"></b><br>
+          Garut, <span id="tanggal"></span>
+        </div>
+      </div>
+
+      <div class="footer">
+
+        <div class="ttd">
+          Kepala Sekolah<br>
+          <img src="img/ttd-gurumapel.png"><br>
+          <div class="nama-ttd">Moh Rofik Zen, S.Pd., M.M.Pd</div>
+          <div class="nip">NIP. 19640613 199412 1 002</div>
+        </div>
+
+        <div class="ttd">
+          Guru Mata Pelajaran<br>
+          <img src="img/ttd-gurumapel.png"><br>
+          <div class="nama-ttd">Ikeu Suryani, S.Pd.</div>
+          <div class="nip">NIP. 199970904202521 2 099</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="unduhPDF()">⬇ Unduh Sertifikat (PDF)</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const userId = localStorage.getItem("userLogin");
+const statusLulus = localStorage.getItem(`status_lulus_final_${userId}`);
+
+if(!userId || statusLulus !== "true"){
+    alert("Akses ditolak! Anda belum dinyatakan lulus akumulasi.");
+    window.location.href="laporan-akhir-topologi.html";
+}
+
+async function loadSertifikatData() {
+    try {
+        const userSnap = await get(ref(db, `users/${userId}`));
+        if (userSnap.exists()) {
+            const data = userSnap.val();
+            document.getElementById("namaSiswa").innerText = data.nama || userId;
+        } else {
+            document.getElementById("namaSiswa").innerText = userId;
+        }
+
+        const nilaiSertifikat = localStorage.getItem(`nilai_sertifikat_${userId}`) || 0;
+        document.getElementById("nilaiAkhir").innerText = nilaiSertifikat;
+
+        const sekarang = new Date();
+        const prefix = "20253861";
+        const dd = String(sekarang.getDate()).padStart(2, '0');
+        const mm = String(sekarang.getMonth() + 1).padStart(2, '0');
+        const yy = sekarang.getFullYear().toString().slice(-2);
+        const tglKodifikasi = `${dd}${mm}${yy}`;
+        const angkaRandom = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+
+        const nomorFinal = `${prefix}${tglKodifikasi}${angkaRandom}`;
+        document.getElementById("noSertifikat").innerText = nomorFinal;
+
+        document.getElementById("tanggal").innerText = sekarang.toLocaleDateString("id-ID", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+
+    } catch (error) {
+        console.error("Error loading certificate:", error);
+    }
+}
+
+loadSertifikatData();
+
+window.unduhPDF = function() {
+    const element = document.getElementById("areaSertifikat");
+    const opt = {
+        margin: 0,
+        filename: `Sertifikat_Topologi_${userId}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+    };
+    html2pdf().set(opt).from(element).save();
+}
+</script>
+
+</body>
+</html>

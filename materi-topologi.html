@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Materi | Merancang Topologi Jaringan</title>
+
+
+
+<!-- FONT -->
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+<!-- CSS UTAMA -->
+
+<link rel="stylesheet" href="style.css">
+
+
+
+<style>
+
+/* ================= HALAMAN MATERI ================= */
+
+.container{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:120px 20px 40px;
+
+}
+
+
+
+.gradient-text{
+
+    background:linear-gradient(90deg,#e93538,#ff6f61,#f8c471);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    font-weight:700;
+
+}
+
+
+
+.card{
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:20px;
+
+    padding:26px;
+
+    margin-bottom:24px;
+
+    border:1px solid rgba(255,255,255,0.3);
+
+}
+
+
+
+/* ================= INDIKATOR ================= */
+
+.indikator-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    margin-top:16px;
+
+}
+
+
+
+.indikator-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 22px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,0.3);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.indikator-item:hover{
+
+    background:rgba(255,255,255,0.08);
+
+}
+
+
+
+.indikator-text{
+
+    max-width:75%;
+
+}
+
+
+
+.indikator-text h4{
+
+    margin-bottom:6px;
+
+    font-size:16px;
+
+}
+
+
+
+.indikator-text p{
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    opacity:.9;
+
+}
+
+
+
+/* ================= STATUS ================= */
+
+.status{
+
+    min-width:130px;
+
+    text-align:center;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+
+
+.status-locked{
+
+    background:#7f8c8d;
+
+    color:#fff;
+
+}
+
+
+
+.status-pending{
+
+    background:#e74c3c;
+
+    color:#fff;
+
+}
+
+
+
+.status-done{
+
+    background:#2ecc71;
+
+    color:#fff;
+
+}
+
+
+
+.indikator-locked{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+
+
+/* ================= CAPAIAN ================= */
+
+.capaian-paragraf{
+
+    margin-top:12px;
+
+    text-align:justify;
+
+    line-height:1.9;
+
+}
+
+
+
+.indikator-locked{
+
+    pointer-events:none;
+
+}
+
+
+
+.nilai-akhir-materi{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    margin:16px 0;
+
+    color:#2ecc71;
+
+}
+
+
+
+.nilai-akhir-materi.tidak-lulus{
+
+    color:#e74c3c;
+
+}
+
+
+
+.btn-laporan{
+
+    margin-top:20px;
+
+    padding:12px 34px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(90deg,#e93538,#ff6f61);
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+
+
+.btn-laporan:hover{
+
+    opacity:0.9;
+
+    transform:scale(1.02);
+
+}
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="brand">
+
+            <img src="img/logo-smkn9.png" class="logo">
+
+            <div class="brand-text">
+
+                <h1>SMKN 9 Garut</h1>
+
+                <span>Media Pembelajaran TJKT</span>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li><a href="dashboard.html" class="active">Materi</a></li>
+
+                <li><a href="login.html">Logout</a></li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= KONTEN ================= -->
+
+<div class="container">
+
+
+
+<h2 class="gradient-text">MATERI : MERANCANG TOPOLOGI JARINGAN</h2>
+
+
+
+<!-- CAPAIAN PEMBELAJARAN -->
+
+<div class="card">
+
+    <h3>Capaian Pembelajaran</h3>
+
+    <p class="capaian-paragraf">
+
+        Pada akhir fase F, peserta didik mampu memahami konsep topologi jaringan,
+
+        menganalisis jenis-jenis topologi jaringan komputer, merancang dan membangun
+
+        topologi jaringan menggunakan perangkat lunak simulasi, serta mengevaluasi
+
+        efisiensi dan fungsionalitas topologi jaringan.
+
+    </p>
+
+</div>
+
+
+
+<!-- INDIKATOR -->
+
+<div class="card">
+
+    <h3>Indikator Tujuan Pembelajaran</h3>
+
+
+
+    <div class="indikator-list">
+
+
+
+        <!-- INDIKATOR 1 -->
+
+        <div id="i1" class="indikator-item"
+
+             onclick="location.href='indikator1-topologi.html'">
+
+            <div class="indikator-text">
+
+                <h4>Indikator 1</h4>
+
+                <p>
+
+                Konsep dasar topologi jaringan serta mengidentifikasi dan membedakan jenis-jenis topologi jaringan beserta kelebihan dan kekurangannya.
+
+                </p>
+
+            </div>
+
+            <span class="status status-locked">Belum Terbuka</span>
+
+
+
+        </div>
+
+
+
+        <!-- INDIKATOR 2 -->
+
+        <div id="i2" class="indikator-item"
+
+             onclick="location.href='indikator2-topologi.html'">
+
+            <div class="indikator-text">
+
+                <h4>Indikator 2</h4>
+
+                <p>
+
+                Membuat rancangan (desain) topologi jaringan sederhana sesuai kebutuhan dan skenario yang diberikan.
+
+                </p>
+
+            </div>
+
+            <span class="status status-locked">Belum Terbuka</span>
+
+        </div>
+
+
+
+        <!-- INDIKATOR 3 -->
+
+        <div id="i3" class="indikator-item"
+
+             onclick="location.href='indikator3-topologi.html'">
+
+            <div class="indikator-text">
+
+                <h4>Indikator 3</h4>
+
+                <p>
+
+                Menerapkan desain topologi jaringan ke dalam simulasi menggunakan Cisco Packet Tracer secara tepat.
+
+                </p>
+
+            </div>
+
+            <span class="status status-locked">Belum Terbuka</span>
+
+        </div>
+
+
+
+        <!-- KUIS AKHIR -->
+
+        <div id="kuisAkhir" class="indikator-item indikator-locked">
+
+        <div class="indikator-text">
+
+            <h4>Kuis Akhir</h4>
+
+            <p>Evaluasi akhir seluruh indikator topologi jaringan.</p>
+
+        </div>
+
+        <span class="status status-locked">Belum Terbuka</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="hasilAkhir" class="card" style="display:none; text-align:center;">
+
+    <h3>Hasil Akhir Pembelajaran</h3>
+
+
+
+    <div id="nilaiAkhirMateri" class="nilai-akhir-materi">0</div>
+
+
+
+    <p id="statusKelulusan" style="font-weight:600;"></p>
+
+
+
+    <button class="btn-laporan"
+
+        onclick="location.href='laporan-akhir-topologi.html'">
+
+    Lihat Laporan & Sertifikat
+
+</button>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p>©2025 PTI IPI Garut - Karlina, Andini, Bunga.</p>
+
+</footer>
+
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const user = localStorage.getItem("userLogin");
+
+if(!user){
+  alert("Silakan login ulang");
+  location.href = "login.html";
+}
+
+// Fungsi Helper untuk mengatur tampilan tombol
+function setStatus(id, text, cls, locked=false, link=null){
+  const item = document.getElementById(id);
+  if(!item) return;
+  const status = item.querySelector(".status");
+
+  status.innerText = text;
+  status.className = "status " + cls;
+
+  if(locked){
+    item.classList.add("indikator-locked");
+    item.onclick = null;
+    item.style.pointerEvents = "none";
+  } else {
+    item.classList.remove("indikator-locked");
+    item.style.pointerEvents = "auto";
+    if(link) item.onclick = () => location.href = link;
+  }
+}
+
+async function syncStatusWithFirebase() {
+    try {
+        const snapshot = await get(ref(db, `users/${user}`));
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            
+            // 1. Logika Kelulusan berdasarkan JSON Anda
+            // Indikator 1 tuntas jika skor_i1 ada atau progres_i1 tuntas
+            const lulus1 = data.skor_i1 >= 70 || data.progres_i1 === "tuntas";
+            // Indikator 2 & 3 tuntas jika folder kuis ada dan nilai >= 70
+            const lulus2 = data.kuis?.indikator2?.nilai >= 70 || data.progres_i2 === "tuntas";
+            const lulus3 = data.kuis?.indikator3?.nilai >= 70 || data.progres_i3 === "tuntas";
+            // Kuis Akhir tuntas jika folder akhir ada atau progres_akhir tuntas
+            const lulusAkhir = data.kuis?.akhir?.nilai !== undefined || data.progres_akhir === "tuntas";
+
+            // Simpan balik ke localStorage agar sinkron
+            localStorage.setItem(`lulus_i1_${user}`, lulus1);
+            localStorage.setItem(`lulus_i2_${user}`, lulus2);
+            localStorage.setItem(`lulus_i3_${user}`, lulus3);
+            localStorage.setItem(`lulus_kuis_akhir_${user}`, lulusAkhir);
+
+            // 2. Update Tampilan Indikator 1
+            setStatus("i1", lulus1 ? "Tuntas" : "Belum Tuntas", lulus1 ? "status-done" : "status-pending", false, "indikator1-topologi.html");
+
+            // 3. Update Tampilan Indikator 2 (Prasyarat i1)
+            if(!lulus1) {
+                setStatus("i2", "Belum Terbuka", "status-locked", true);
+            } else {
+                setStatus("i2", lulus2 ? "Tuntas" : "Belum Tuntas", lulus2 ? "status-done" : "status-pending", false, "indikator2-topologi.html");
+            }
+
+            // 4. Update Tampilan Indikator 3 (Prasyarat i2)
+            if(!lulus2) {
+                setStatus("i3", "Belum Terbuka", "status-locked", true);
+            } else {
+                setStatus("i3", lulus3 ? "Tuntas" : "Belum Tuntas", lulus3 ? "status-done" : "status-pending", false, "indikator3-topologi.html");
+            }
+
+            // 5. Update Tampilan Kuis Akhir (Prasyarat i1, i2, i3)
+            if(lulus1 && lulus2 && lulus3) {
+                setStatus("kuisAkhir", lulusAkhir ? "Tuntas" : "Belum Tuntas", lulusAkhir ? "status-done" : "status-pending", false, "kuis-akhir-topologi.html");
+            } else {
+                setStatus("kuisAkhir", "Belum Terbuka", "status-locked", true);
+            }
+
+            // 6. Tampilkan Kartu Hasil Akhir jika Kuis Akhir sudah dikerjakan
+            if(lulusAkhir) {
+                document.getElementById("hasilAkhir").style.display = "block";
+                const n1 = Number(data.skor_i1 || 0);
+                const n2 = Number(data.kuis?.indikator2?.nilai || 0);
+                const n3 = Number(data.kuis?.indikator3?.nilai || 0);
+                const nAkhir = Number(data.kuis?.akhir?.nilai || 0);
+                
+                const rataIndikator = (n1 + n2 + n3) / 3;
+                const nilaiFinal = Math.round((rataIndikator * 0.4) + (nAkhir * 0.6));
+                
+                const nilaiBox = document.getElementById("nilaiAkhirMateri");
+                nilaiBox.innerText = nilaiFinal;
+                
+                if(nilaiFinal >= 70) {
+                    document.getElementById("statusKelulusan").innerHTML = "🎉 <b>ANDA DINYATAKAN LULUS</b>";
+                    localStorage.setItem(`status_lulus_final_${user}`, "true");
+                } else {
+                    document.getElementById("statusKelulusan").innerHTML = "❌ <b>ANDA BELUM LULUS</b>";
+                    nilaiBox.classList.add("tidak-lulus");
+                }
+            }
+        }
+    } catch (error) {
+        console.error("Gagal sinkronisasi status:", error);
+    }
+}
+
+// Jalankan fungsi sinkronisasi
+syncStatusWithFirebase();
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,3361 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Indikator 3 | Topologi Jaringan</title>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+
+
+
+
+
+
+/* ================= HEADER ================= */
+
+
+
+/* ====== FORCE HEADER SAME AS MATERI ====== */
+
+
+
+.navbar{
+
+
+
+    position:fixed;
+
+
+
+    top:0;
+
+
+
+    left:0;
+
+
+
+    width:100%;
+
+
+
+
+
+
+
+    background:rgba(52,70,163,0.55); /* TRANSPARAN */
+
+
+
+    backdrop-filter:blur(12px);
+
+
+
+    -webkit-backdrop-filter:blur(12px);
+
+
+
+
+
+
+
+    z-index:999;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.brand-text h1{
+
+
+
+    font-weight:700 !important;
+
+
+
+    line-height:1.2 !important;
+
+
+
+}
+
+
+
+
+
+
+
+nav ul li a{
+
+
+
+    font-weight:600 !important;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.gradient-text{
+
+
+
+    background: linear-gradient(
+
+
+
+        90deg,
+
+
+
+        #e93538,
+
+
+
+        #ff6f61,
+
+
+
+        #f8c471
+
+
+
+    );
+
+
+
+    -webkit-background-clip: text;
+
+
+
+    -webkit-text-fill-color: transparent;
+
+
+
+    font-weight: 700;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ================= GLOBAL ================= */
+
+
+
+body{
+
+
+
+    margin:0;
+
+
+
+    font-family:'Poppins',sans-serif;
+
+
+
+    background:linear-gradient(180deg,#2f3e8f,#1a2a6c);
+
+
+
+    color:#ffffff;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= CONTAINER ================= */
+
+
+
+.container{
+
+
+
+    max-width:1000px;
+
+
+
+    margin:auto;
+
+
+
+    padding:120px 20px 60px;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= CARD ================= */
+
+
+
+.card{
+
+
+
+    background:rgba(255,255,255,0.12);
+
+
+
+    border-radius:20px;
+
+
+
+    padding:30px;
+
+
+
+    margin-bottom:30px;
+
+
+
+    border:1px solid rgba(255,255,255,0.18);
+
+
+
+    max-width:750px;
+
+
+
+    margin-left:auto;
+
+
+
+    margin-right:auto;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= JUDUL ================= */
+
+
+
+
+
+
+
+
+
+
+
+.card h2:first-child{
+
+
+
+    color:inherit;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= LIST ================= */
+
+
+
+.card ul{
+
+
+
+    padding-left:18px;
+
+
+
+}
+
+
+
+
+
+
+
+.card ul li{
+
+
+
+
+
+
+
+    text-align: justify;
+
+
+
+    hyphens: auto;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= VIDEO ================= */
+
+
+
+.video-wrapper{
+
+
+
+    position:relative;
+
+
+
+    padding-top:56.25%;
+
+
+
+    border-radius:18px;
+
+
+
+    overflow:hidden;
+
+
+
+    background:#000;
+
+
+
+}
+
+
+
+
+
+
+
+.video-wrapper iframe{
+
+
+
+    position:absolute;
+
+
+
+    inset:0;
+
+
+
+    width:100%;
+
+
+
+    height:100%;
+
+
+
+    border:none;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= QUIZ ================= */
+
+
+
+.quiz-item{
+
+
+
+    margin-bottom:22px;
+
+
+
+    padding:20px;
+
+
+
+    border-radius:18px;
+
+
+
+    background:rgba(255,255,255,0.10);
+
+
+
+}
+
+
+
+
+
+
+
+.quiz-item p{
+
+
+
+    margin-top:0;
+
+
+
+    font-weight:500;
+
+
+
+}
+
+
+
+
+
+
+
+.quiz-item label{
+
+
+
+    display:block;
+
+
+
+    margin:8px 0;
+
+
+
+    cursor:pointer;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= BUTTON ================= */
+
+
+
+.btn{
+
+
+
+    padding:12px 34px;
+
+
+
+    border:none;
+
+
+
+    border-radius:30px;
+
+
+
+    background:linear-gradient(90deg,#ff4d4d,#ff7b54);
+
+
+
+    color:#fff;
+
+
+
+    font-size:15px;
+
+
+
+    font-weight:600;
+
+
+
+    cursor:pointer;
+
+
+
+    transition:.3s;
+
+
+
+}
+
+
+
+
+
+
+
+.btn:hover{
+
+
+
+    opacity:.9;
+
+
+
+    transform:scale(1.03);
+
+
+
+}
+
+
+
+
+
+
+
+.btn:disabled{
+
+
+
+    opacity:.6;
+
+
+
+    cursor:not-allowed;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= KUNCI ================= */
+
+
+
+.kunci{
+
+
+
+    margin-top:12px;
+
+
+
+    padding:12px 16px;
+
+
+
+    background:#eafaf1;
+
+
+
+    color:#145a32;
+
+
+
+    border-left:4px solid #2ecc71;
+
+
+
+    border-radius:10px;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= JUDUL CARD FIX SESUAI MATERI UTAMA ================= */
+
+
+
+.card h2{
+
+
+
+    font-size:24px;
+
+
+
+    font-weight:700;
+
+
+
+    margin-top:0;
+
+
+
+    margin-bottom:16px;
+
+
+
+    letter-spacing:0.4px;
+
+
+
+
+
+
+
+    background: linear-gradient(
+
+
+
+        90deg,
+
+
+
+        #e93538,
+
+
+
+        #ff6f61,
+
+
+
+        #f8c471
+
+
+
+    );
+
+
+
+
+
+
+
+    -webkit-background-clip: text;
+
+
+
+    -webkit-text-fill-color: transparent;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= HEADER MATERI LAYOUT ================= */
+
+
+
+.materi-header{
+
+
+
+    max-width:900px;
+
+
+
+    margin:0 auto 40px;
+
+
+
+    text-align:left;
+
+
+
+}
+
+
+
+
+
+
+
+.materi-badge{
+
+
+
+    display:inline-block;
+
+
+
+    padding:6px 16px;
+
+
+
+    border-radius:10px;
+
+
+
+    font-size:13px;      /* TIDAK DIUBAH */
+
+
+
+    font-weight:600;     /* TIDAK DIUBAH */
+
+
+
+    margin-bottom:14px;
+
+
+
+
+
+
+
+    /* ⬇️ SAMA DENGAN CARD UTAMA */
+
+
+
+    background: rgba(255,255,255,0.12);
+
+
+
+    border:1px solid rgba(255,255,255,0.18);
+
+
+
+    color:#ffffff;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.materi-title{
+
+
+
+    font-size:30px;
+
+
+
+    line-height:1.25;
+
+
+
+    font-weight:800;
+
+
+
+    margin:0;
+
+
+
+}
+
+
+
+
+
+
+
+.materi-image{
+
+
+
+    margin: 30px 0;
+
+
+
+    text-align: center;
+
+
+
+}
+
+
+
+
+
+
+
+.materi-image img{
+
+
+
+    width: 100%;
+
+
+
+    max-width: 700px;   /* ⬅️ UBAH ANGKA INI */
+
+
+
+    height: auto;
+
+
+
+    border-radius: 16px;
+
+
+
+}
+
+
+
+
+
+
+
+.paragraph-justify{
+
+
+
+    text-align: justify;
+
+
+
+    font-size:15px;
+
+
+
+    line-height:1.8;
+
+
+
+    color:#fff;
+
+
+
+    margin-top:12px;
+
+
+
+    margin-bottom:28px;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= SUB MATERI ================= */
+
+
+
+.sub-materi{
+
+
+
+    font-size:20px;          /* ukuran lebih kecil */
+
+
+
+    font-weight:800;
+
+
+
+    margin-top:26px;
+
+
+
+    margin-bottom:10px;
+
+
+
+
+
+
+
+    background: linear-gradient(
+
+
+
+        90deg,
+
+
+
+        #e93538,
+
+
+
+        #ff6f61,
+
+
+
+        #f8c471
+
+
+
+    );
+
+
+
+    -webkit-background-clip:text;
+
+
+
+    -webkit-text-fill-color:transparent;
+
+
+
+}
+
+
+
+
+
+
+
+.sub-paragraph{
+
+
+
+    text-align: justify;
+
+
+
+    font-size:15px;
+
+
+
+    line-height:1.8;
+
+
+
+    color:#fff;
+
+
+
+    margin-top:12px;
+
+
+
+    margin-bottom:18px;
+
+
+
+}
+
+
+
+
+
+
+
+.section-text{
+
+
+
+    text-align: justify;
+
+
+
+    font-size:15px;
+
+
+
+    line-height:1.9;
+
+
+
+    color:#ffffff;
+
+
+
+    margin-top:14px;
+
+
+
+    margin-bottom:26px;
+
+
+
+}
+
+
+
+
+
+
+
+.table-wrapper{
+
+
+
+    overflow-x:auto;
+
+
+
+    margin-top:18px;
+
+
+
+}
+
+
+
+
+
+
+
+.topology-table{
+
+
+
+    width:100%;
+
+
+
+    border-collapse:collapse;
+
+
+
+    font-size:14.5px;
+
+
+
+    color:#ffffff;
+
+
+
+}
+
+
+
+
+
+
+
+.topology-table th{
+
+
+
+    padding:14px 12px;
+
+
+
+    text-align:center;
+
+
+
+    font-weight:600;
+
+
+
+    background:rgba(255,255,255,0.12); /* SAMA SEPERTI CARD */
+
+
+
+    border:1px solid rgba(255,255,255,0.18);
+
+
+
+}
+
+
+
+
+
+
+
+.topology-table td{
+
+
+
+    padding:14px 14px;
+
+
+
+    vertical-align:top;
+
+
+
+    border-bottom:1px solid rgba(255,255,255,0.15);
+
+
+
+    line-height:1.7;
+
+
+
+}
+
+
+
+
+
+
+
+.topology-table tr:hover{
+
+
+
+    background:rgba(255,255,255,0.05);
+
+
+
+}
+
+
+
+
+
+
+
+.topology-table td strong{
+
+
+
+    color:#ffd180; /* masih aman, tidak gradasi */
+
+
+
+}
+
+
+
+
+
+
+
+.instruction-box{
+
+
+
+    display:flex;
+
+
+
+    gap:14px;
+
+
+
+    padding:16px 18px;
+
+
+
+    margin:18px 0 22px;
+
+
+
+
+
+
+
+    background:rgba(255,255,255,0.10);
+
+
+
+    border:1px solid rgba(255,255,255,0.18);
+
+
+
+    border-radius:12px;
+
+
+
+}
+
+
+
+
+
+
+
+.instruction-icon{
+
+
+
+    font-size:22px;
+
+
+
+    line-height:1;
+
+
+
+}
+
+
+
+
+
+
+
+.instruction-text{
+
+
+
+    font-size:14.5px;
+
+
+
+    line-height:1.7;
+
+
+
+    text-align:justify;
+
+
+
+    color:#ffffff;
+
+
+
+}
+
+
+
+
+
+
+
+.video-title{
+
+
+
+    font-size:30px;     /* lebih kecil dari 30px */
+
+
+
+    line-height:1.35;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= QUIZ HEADER MIRIP "MATERI PEMBELAJARAN" ================= */
+
+
+
+#quizCard h2{
+
+
+
+    position: relative;
+
+
+
+    font-size:30px;
+
+
+
+    line-height:1.25;
+
+
+
+    font-weight:800;
+
+
+
+    margin-top:32px;
+
+
+
+    margin-bottom:12px;
+
+
+
+
+
+
+
+    background: linear-gradient(
+
+
+
+        90deg,
+
+
+
+        #e93538,
+
+
+
+        #ff6f61,
+
+
+
+        #f8c471
+
+
+
+    );
+
+
+
+    -webkit-background-clip:text;
+
+
+
+    -webkit-text-fill-color:transparent;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= QUIZ = MATERI PEMBELAJARAN (100% SAMA) ================= */
+
+
+
+#quizCard h2{
+
+
+
+    position: relative;
+
+
+
+    font-size:30px;
+
+
+
+    line-height:1.25;
+
+
+
+    font-weight:800;
+
+
+
+    margin:0 0 28px 0;
+
+
+
+
+
+
+
+    background: linear-gradient(
+
+
+
+        90deg,
+
+
+
+        #e93538,
+
+
+
+        #ff6f61,
+
+
+
+        #f8c471
+
+
+
+    );
+
+
+
+    -webkit-background-clip:text;
+
+
+
+    -webkit-text-fill-color:transparent;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= FINAL LOCK JUDUL MATERI, VIDEO, QUIZ ================= */
+
+
+
+
+
+
+
+/* SATUKAN SEMUA JUDUL UTAMA */
+
+
+
+.materi-title,
+
+
+
+.video-title,
+
+
+
+#quizCard h2{
+
+
+
+    font-size:25px !important;
+
+
+
+    line-height:1.25 !important;
+
+
+
+    font-weight:800 !important;
+
+
+
+
+
+
+
+    background: linear-gradient(
+
+
+
+        90deg,
+
+
+
+        #e93538,
+
+
+
+        #ff6f61,
+
+
+
+        #f8c471
+
+
+
+    ) !important;
+
+
+
+
+
+
+
+    -webkit-background-clip:text !important;
+
+
+
+    -webkit-text-fill-color:transparent !important;
+
+
+
+}
+
+
+
+
+
+
+
+/* ===== FIX JARAK BADGE ↔ JUDUL QUIZ (FINAL & PRESISI) ===== */
+
+
+
+#quizCard .materi-badge{
+
+
+
+    margin-bottom:6px !important;
+
+
+
+}
+
+
+
+
+
+
+
+#quizCard .materi-title{
+
+
+
+    margin-top:0 !important;
+
+
+
+    line-height:1.25 !important;
+
+
+
+}
+
+
+
+
+
+
+
+#quizCard .materi-header{
+
+
+
+    padding-top:0 !important;
+
+
+
+}
+
+
+
+
+
+
+
+/* ================= SCROLL ANIMATION ================= */
+
+
+
+.animate{
+
+
+
+    opacity: 0;
+
+
+
+    transform: translateY(32px);
+
+
+
+    transition:
+
+
+
+        opacity 0.6s ease,
+
+
+
+        transform 0.6s ease;
+
+
+
+    will-change: opacity, transform;
+
+
+
+}
+
+
+
+
+
+
+
+.animate.show{
+
+
+
+    opacity: 1;
+
+
+
+    transform: translateY(0);
+
+
+
+}
+
+
+
+
+
+
+
+/* Highlight jawaban */
+
+
+
+.quiz-item label {
+
+
+
+  display: block;
+
+
+
+  padding: 8px 10px;
+
+
+
+  margin: 6px 0;
+
+
+
+  border-radius: 8px;
+
+
+
+  transition: .3s;
+
+
+
+}
+
+
+
+
+
+
+
+.quiz-item label.benar {
+
+
+
+  background: #e9f8f0;
+
+
+
+  border-left: 5px solid #2ecc71;
+
+
+
+  color: #145a32;
+
+
+
+}
+
+
+
+
+
+
+
+.quiz-item label.salah {
+
+
+
+  background: #fdeaea;
+
+
+
+  border-left: 5px solid #e74c3c;
+
+
+
+  color: #7b241c;
+
+
+
+}
+
+
+
+
+
+
+
+.quiz-item label.normal {
+
+
+
+  background: #f4f4f4;
+
+
+
+  color: #555;
+
+
+
+}
+
+
+
+
+
+
+
+.quiz-item input[type="radio"] {
+
+
+
+  pointer-events: none;
+
+
+
+}
+
+
+
+
+
+
+
+/* Overlay */
+
+
+
+.popup-overlay {
+
+
+
+  position: fixed;
+
+
+
+  inset: 0;
+
+
+
+  background: rgba(0,0,0,.5);
+
+
+
+  backdrop-filter: blur(4px);
+
+
+
+  display: none;
+
+
+
+  justify-content: center;
+
+
+
+  align-items: center;
+
+
+
+  z-index: 9999;
+
+
+
+}
+
+
+
+
+
+
+
+/* Box */
+
+
+
+.popup-box {
+
+
+
+    background: #ffffff;
+
+
+
+    width: 95%;
+
+
+
+    max-width: 450px;
+
+
+
+    padding: 40px 30px;
+
+
+
+    border-radius: 30px;
+
+
+
+    text-align: center;
+
+
+
+    position: relative;
+
+
+
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+
+
+
+    border: none;
+
+
+
+    color: #1f2937;
+
+
+
+}
+
+
+
+
+
+
+
+/* ===== FIX WARNA TEKS POPUP ===== */
+
+
+
+.popup-box {
+
+
+
+  color: #1f2937; /* teks popup jadi gelap */
+
+
+
+}
+
+
+
+
+
+
+
+.popup-box * {
+
+
+
+  color: inherit;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Icon */
+
+
+
+.popup-icon {
+
+
+
+  font-size: 60px;
+
+
+
+  margin-bottom: 10px;
+
+
+
+  animation: bounce 1.2s infinite;
+
+
+
+}
+
+
+
+
+
+
+
+.popup-box.success {
+
+
+
+  border-top: 6px solid #2ecc71;
+
+
+
+}
+
+
+
+
+
+
+
+.popup-box.fail {
+
+
+
+  border-top: 6px solid #e74c3c;
+
+
+
+}
+
+
+
+
+
+
+
+/* Text */
+
+
+
+.popup-message {
+
+
+
+  margin-top: 12px;
+
+
+
+  font-weight: 600;
+
+
+
+}
+
+
+
+
+
+
+
+.popup-actions {
+
+
+
+  margin-top: 20px;
+
+
+
+}
+
+
+
+
+
+
+
+.popup-actions .btn{
+
+
+
+  padding:12px 34px;
+
+
+
+  border:none;
+
+
+
+  border-radius:14px;
+
+
+
+  cursor:pointer;
+
+
+
+
+
+
+
+  /* ⬇️ WARNA TOMBOL */
+
+
+
+  background: linear-gradient(135deg,#ff9800,#ff5722);
+
+
+
+  color:#ffffff !important;   /* ⬅️ OK PUTIH (FIX) */
+
+
+
+
+
+
+
+  font-size:15px;
+
+
+
+  font-weight:600;
+
+
+
+  font-family:'Poppins',sans-serif;
+
+
+
+
+
+
+
+  box-shadow:0 10px 22px rgba(255,87,34,.35);
+
+
+
+  transition:all .3s ease;
+
+
+
+}
+
+
+
+
+
+
+
+.popup-actions .btn:hover{
+
+
+
+  transform:translateY(-2px);
+
+
+
+  box-shadow:0 14px 30px rgba(255,87,34,.45);
+
+
+
+}
+
+
+
+
+
+
+
+.popup-actions .btn:active{
+
+
+
+  transform:scale(.96);
+
+
+
+}
+
+
+
+
+
+
+
+.popup-box.success .popup-actions .btn{
+
+
+
+  background: linear-gradient(135deg,#2ecc71,#27ae60);
+
+
+
+}
+
+
+
+
+
+
+
+.popup-box.fail .popup-actions .btn{
+
+
+
+  background: linear-gradient(135deg,#e74c3c,#c0392b);
+
+
+
+}
+
+
+
+
+
+/* ================= CARD LEADERBOARD ORANGE ================= */
+
+.card-leaderboard {
+
+    margin-top: 25px;
+
+    background: rgba(255, 154, 60, 0.05);
+
+    border: 2px dashed #ff8c00;
+
+    text-align: center;
+
+    padding: 30px;
+
+    display: none; /* Sembunyi di awal */
+
+}
+
+
+
+.text-leaderboard {
+
+    font-size: 15px;
+
+    margin-bottom: 20px;
+
+    color: #ff8c00;
+
+    font-weight: 600;
+
+}
+
+
+
+.btn-leaderboard {
+
+    background: linear-gradient(90deg, #ff8c00, #ffae00);
+
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3);
+
+    width: 100%;
+
+    max-width: 350px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    color: #fff !important;
+
+    font-weight: 700;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+
+
+.btn-leaderboard:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.5);
+
+    filter: brightness(1.1);
+
+}
+
+
+
+.quiz-item label.normal {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ccc;
+    opacity: 0.8;
+}
+
+/* Memastikan Card Leaderboard menyatu dengan desain card kuis */
+#cardLeaderboard {
+    border: 2px dashed #ff8c00;
+    background: rgba(255, 140, 0, 0.1);
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 25px;
+}
+
+
+.popup-overlay {
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.popup-box.success {
+    animation: popScale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popScale {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+/* Animations */
+
+
+
+@keyframes popupIn {
+
+
+
+  from {
+
+
+
+    transform: scale(.6);
+
+
+
+    opacity: 0;
+
+
+
+  }
+
+
+
+  to {
+
+
+
+    transform: scale(1);
+
+
+
+    opacity: 1;
+
+
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+@keyframes bounce {
+
+
+
+  0%,100% { transform: translateY(0); }
+
+
+
+  50% { transform: translateY(-6px); }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@keyframes popScale{
+
+
+
+    from{transform:scale(.7);opacity:0}
+
+
+
+    to{transform:scale(1);opacity:1}
+
+
+
+}
+
+
+
+@keyframes popupOut {
+
+
+
+  to {
+
+
+
+    transform: scale(.7);
+
+
+
+    opacity: 0;
+
+
+
+  }
+
+
+
+}
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="brand">
+
+            <img src="img/logo-smkn9.png" class="logo">
+
+            <div class="brand-text">
+
+                <h1>SMKN 9 Garut</h1>
+
+                <span>Media Pembelajaran TJKT</span>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li><a href="dashboard.html">Materi</a></li>
+
+                <li><a href="login.html">Logout</a></li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+
+
+<!-- ================= MATERI ================= -->
+
+<div class="card animate">
+
+  <div class="materi-header">
+
+      <span class="materi-badge">📘Materi Pembelajaran</span>
+
+      <h1 class="materi-title gradient-text">
+
+        Menerapkan desain topologi jaringan ke dalam simulasi menggunakan Cisco Packet Tracer secara tepat.
+
+      </h1>
+
+  </div>
+
+
+
+  <div class="materi-image">
+
+      <img src="img/cisko-packet-tracker.jpeg" alt="Ilustrasi Topologi Jaringan">
+
+  </div>
+
+
+
+  <!-- Pendahuluan -->
+
+  <h2>A. Pendahuluan</h2>
+
+  <p class="paragraph-justify">
+
+    Jaringan komputer merupakan sekumpulan perangkat yang saling terhubung untuk berbagi data dan sumber daya.
+
+    Dalam penerapannya, jaringan komputer memiliki beberapa bentuk topologi, salah satunya adalah topologi Star.
+
+    Topologi ini banyak digunakan karena mudah dikelola, stabil, dan fleksibel dalam pengembangannya.
+
+    Pada materi ini, peserta didik akan mempelajari cara menerapkan topologi Star ke dalam simulasi menggunakan Cisco Packet Tracer,
+
+    sehingga tidak hanya memahami teori, tetapi juga mampu mempraktikkannya secara langsung.
+
+  </p>
+
+
+
+  <!-- Pengertian Topologi Star -->
+
+  <h2>B. Pengertian Topologi Star</h2>
+
+  <p class="paragraph-justify">
+
+    Topologi Star adalah bentuk jaringan di mana semua perangkat komputer terhubung ke satu perangkat pusat, yaitu switch atau hub.
+
+    Semua komunikasi data antar komputer akan melalui perangkat pusat tersebut.
+
+  </p>
+
+  <p><b>Ciri utama topologi Star:</b></p>
+
+  <ul class="paragraph-justify">
+
+    <li>Memiliki satu perangkat pusat (switch)</li>
+
+    <li>Setiap komputer terhubung langsung ke switch</li>
+
+    <li>Kerusakan pada satu kabel tidak memengaruhi komputer lain</li>
+
+  </ul>
+
+
+
+  <!-- Alat dan Bahan -->
+
+  <h2>C. Alat dan Bahan Simulasi</h2>
+
+  <p class="paragraph-justify">
+
+    Perangkat yang digunakan dalam simulasi ini adalah:
+
+  </p>
+
+  <ul class="paragraph-justify">
+
+    <li>1 buah Switch Cisco 2960</li>
+
+    <li>4 buah PC (Personal Computer)</li>
+
+    <li>Kabel Copper Straight-Through</li>
+
+    <li>Aplikasi Cisco Packet Tracer</li>
+
+  </ul>
+
+
+
+  <!-- Langkah-langkah -->
+
+  <h2>D. Langkah-Langkah Simulasi di Cisco Packet Tracer</h2>
+
+  <ol class="paragraph-justify">
+
+    <li>
+
+      <b>Membuka Aplikasi:</b> Jalankan aplikasi Cisco Packet Tracer. Pastikan area kerja dalam kondisi kosong.
+
+    </li>
+
+    <li>
+
+      <b>Menambahkan Perangkat:</b> Tambahkan 1 Switch 2960 dan letakkan di tengah area kerja.
+
+      Tambahkan 4 PC dan posisikan di sekeliling switch.
+
+    </li>
+
+    <li>
+
+      <b>Menghubungkan Perangkat:</b> Pilih Copper Straight-Through Cable. Hubungkan setiap PC ke switch.
+
+      Pastikan kabel berwarna hijau sebagai tanda koneksi berhasil.
+
+    </li>
+
+    <li>
+
+      <b>Pengaturan Alamat IP:</b> Lakukan pengaturan IP Address pada masing-masing PC melalui:
+
+      <br>PC → Desktop → IP Configuration
+
+      <ul style="margin-top:8px;">
+
+        <li>PC1 : 192.168.1.1</li>
+
+        <li>PC2 : 192.168.1.2</li>
+
+        <li>PC3 : 192.168.1.3</li>
+
+        <li>PC4 : 192.168.1.4</li>
+
+        <li>Subnet Mask : 255.255.255.0</li>
+
+      </ul>
+
+      Semua komputer berada dalam satu jaringan lokal yang sama.
+
+    </li>
+
+    <li>
+
+      <b>Pengujian Koneksi:</b> Buka Command Prompt pada PC1. Ketik perintah: <code>ping 192.168.1.2</code>.
+
+      Jika muncul pesan <i>Reply from 192.168.1.2</i>, maka jaringan berhasil terhubung.
+
+    </li>
+
+  </ol>
+
+
+
+  <!-- Hasil Simulasi -->
+
+  <h2>E. Hasil Simulasi</h2>
+
+  <ul class="paragraph-justify">
+
+    <li>Semua komputer dapat saling berkomunikasi melalui switch.</li>
+
+    <li>Kabel yang aktif ditandai dengan warna hijau.</li>
+
+    <li>Proses pengiriman data berjalan dengan baik.</li>
+
+  </ul>
+
+</div>
+
+
+
+
+
+<!-- ================= VIDEO ================= -->
+
+<div class="card animate">
+
+
+
+  <div class="materi-badge">🎥 Video Pembelajaran</div>
+
+
+
+  <h2 class="materi-title gradient-text video-title">
+
+    Video Pembelajaran Konsep Dasar Topologi Jaringan serta Mengidentifikasi dan
+
+    Membedakan Jenis-Jenis Topologi Jaringan Beserta Kelebihan dan Kekurangannya
+
+  </h2>
+
+
+
+  <!-- INSTRUKSI MENARIK -->
+
+  <div class="instruction-box">
+
+    <div class="instruction-icon">ℹ️</div>
+
+    <div class="instruction-text">
+
+      Perhatikan dan simak video pembelajaran berikut dengan saksama.
+
+      Fokuskan perhatian pada konsep dasar topologi jaringan serta
+
+      perbedaan setiap jenis topologi beserta kelebihan dan kekurangannya
+
+      sebagai bekal untuk mengerjakan kuis.
+
+    </div>
+
+  </div>
+
+
+
+  <!-- VIDEO -->
+
+  <div class="video-wrapper">
+
+  <iframe
+
+    src="https://www.youtube.com/embed/3YHyuAG5Lho"
+
+    allowfullscreen>
+
+  </iframe>
+
+  </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ================= QUIZ ================= -->
+
+<div class="card animate" id="quizCard">
+
+<div class="materi-header">
+
+    <span class="materi-badge">📝Quiz Indikator 1</span>
+
+</div>
+
+
+
+<h2 class="materi-title gradient-text video-title">
+
+    Quiz Konsep Dasar Topologi Jaringan serta Mengidentifikasi dan
+
+    Membedakan Jenis-Jenis Topologi Jaringan Beserta Kelebihan dan Kekurangannya
+
+  </h2>
+
+
+
+<div class="instruction-box">
+
+  <div class="instruction-icon">ℹ️</div>
+
+  <div class="instruction-text">
+
+    Bacalah setiap pertanyaan dengan seksama. Pilih jawaban yang menurutmu paling benar
+
+    berdasarkan materi yang telah dipelajari. Jangan lupa fokus dan jangan menebak!
+
+  </div>
+
+</div>
+
+
+
+
+
+<div class="quiz-item" data-q="q1">
+
+<p>1. Setelah desain topologi jaringan selesai dibuat, langkah selanjutnya yang harus dilakukan adalah …</p>
+
+<label><input type="radio" name="q1" value="Mengatur IP Address pada setiap PC"> Mengatur IP Address pada setiap PC</label>
+
+<label><input type="radio" name="q1" value="Menghapus desain sebelumnya"> Menghapus desain sebelumnya</label>
+
+<label><input type="radio" name="q1" value="Menerapkan desain ke dalam aplikasi Cisco Packet Tracer"> Menerapkan desain ke dalam aplikasi Cisco Packet Tracer</label>
+
+<label><input type="radio" name="q1" value="Menyimpan file dalam format .pkt"> Menyimpan file dalam format .pkt</label>
+
+</div>
+
+
+
+
+
+<div class="quiz-item" data-q="q2">
+
+<p>2. Jenis switch yang digunakan dalam simulasi pada Cisco Packet Tracer adalah …</p>
+
+<label><input type="radio" name="q2" value="Switch 2950"> Switch 2950</label>
+
+<label><input type="radio" name="q2" value="Switch 2960"> Switch 2960</label>
+
+<label><input type="radio" name="q2" value="Switch 3560"> Switch 3560</label>
+
+<label><input type="radio" name="q2" value="Switch 9200"> Switch 9200</label>
+
+</div>
+
+
+
+
+
+
+
+<div class="quiz-item" data-q="q3">
+
+<p>3. Jumlah komputer (PC) yang digunakan dalam simulasi adalah …</p>
+
+<label><input type="radio" name="q3" value="2"> 2</label>
+
+<label><input type="radio" name="q3" value="3"> 3</label>
+
+<label><input type="radio" name="q3" value="4"> 4</label>
+
+<label><input type="radio" name="q3" value="5"> 5</label>
+
+</div>
+
+
+
+
+
+<div class="quiz-item" data-q="q4">
+
+<p>4. Kabel yang digunakan untuk menghubungkan PC ke switch adalah …</p>
+
+<label><input type="radio" name="q4" value="Fiber Optic Cable"> Fiber Optic Cable</label>
+
+<label><input type="radio" name="q4" value="Coaxial Cable"> Coaxial Cable</label>
+
+<label><input type="radio" name="q4" value="Serial Cable"> Serial Cable</label>
+
+<label><input type="radio" name="q4" value="Copper Straight-Through Cable"> Copper Straight-Through Cable</label>
+
+</div>
+
+
+
+
+
+
+
+<div class="quiz-item" data-q="q5">
+
+<p>5. Alamat IP yang diberikan pada PC3 adalah …</p>
+
+<label><input type="radio" name="q5" value="192.168.1.1"> 192.168.1.1</label>
+
+<label><input type="radio" name="q5" value="192.168.1.2"> 192.168.1.2</label>
+
+<label><input type="radio" name="q5" value="192.168.1.3"> 192.168.1.3</label>
+
+<label><input type="radio" name="q5" value="192.168.1.4"> 192.168.1.4</label>
+
+</div>
+
+
+
+
+
+<div id="quizActions" class="quiz-actions">
+
+  <button id="submitBtn" class="btn" onclick="submitQuiz()">Submit Quiz</button>
+
+</div>
+
+
+
+<div class="card card-leaderboard animate" id="cardLeaderboard">
+    <p class="text-leaderboard">
+        ✨ Kamu sudah mengerjakan kuis ini. <br>
+        Coba lihat peringkat Kamu di antara teman-teman yang lain! 😊
+    </p>
+    
+    <button class="btn-leaderboard" onclick="location.href='leaderboard.html?indikator=3'">
+        🏆 Lihat Leaderboard Anda
+    </button>
+
+    <button class="btn-leaderboard" 
+            onclick="location.href='rangkuman-topologi.html'" 
+            style="background: linear-gradient(90deg, #2ecc71, #27ae60); margin-top: 15px; border: 2px solid rgba(255,255,255,0.2);">
+        📖 Baca Rangkuman Materi
+    </button>
+</div>
+</div>
+</div>
+
+
+
+<!-- ================= POPUP HASIL QUIZ ================= -->
+
+<div id="popup" class="popup-overlay">
+
+  <div id="popupBox" class="popup-box">
+
+    <div class="popup-icon" id="popupIcon"></div>
+
+
+
+    <h2 id="popupTitle"></h2>
+
+    <p id="popupScore"></p>
+
+    <p id="popupTime"></p>
+
+
+
+    <p id="popupMessage" class="popup-message"></p>
+
+
+
+    <div id="popupActions" class="popup-actions"></div>
+
+  </div>
+
+</div>
+
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+
+
+// 1. Konfigurasi Firebase
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBe9Yjx2G7IXl8nV57SzX06EpHb9aW57MA",
+
+    authDomain: "mediabelajarppj.firebaseapp.com",
+
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId: "mediabelajarppj",
+
+    storageBucket: "mediabelajarppj.appspot.com",
+
+    messagingSenderId: "817031276394",
+
+    appId: "1:817031276394:web:fd91df17cfe6a0f262e713"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+
+
+// 2. Cek Login
+
+const userId = localStorage.getItem("userLogin");
+
+if (!userId) {
+
+    alert("Silakan login terlebih dahulu!");
+
+    location.href = "login.html";
+
+}
+
+
+
+// 3. Variabel Global & Jawaban (Penting: Sesuaikan ID Indikator)
+
+const INDIKATOR_ID = "3";
+
+const KKM = 70;
+
+const startTime = Date.now();
+
+
+
+const jawaban = {
+
+  q1: "Menerapkan desain ke dalam aplikasi Cisco Packet Tracer",
+
+  q2: "Switch 2960",
+
+  q3: "4",
+
+  q4: "Copper Straight-Through Cable",
+
+  q5: "192.168.1.3"
+
+};
+
+
+
+const penjelasan = {
+
+  q1: {
+
+    benar: "Bagus! Kamu memahami alur logika topologi. Ingat, setelah desain dibuat, langkah selanjutnya adalah memastikannya bisa diterapkan dengan benar sebelum konfigurasi IP.",
+
+    salah: "Coba pikirkan alur kerja simulasi: setelah membuat desain topologi, apa langkah paling logis untuk memastikan semua perangkat siap digunakan?"
+
+  },
+
+  q2: {
+
+    benar: "Benar! Switch yang digunakan sudah sesuai skenario. Pahami bahwa jenis switch mempengaruhi koneksi antar perangkat.",
+
+    salah: "Perhatikan jenis switch yang cocok untuk skala jaringan ini. Apakah switch yang kamu pilih sesuai dengan materi simulasi?"
+
+  },
+
+  q3: {
+
+    benar: "Ya, jumlah PC sesuai skenario. Selalu hitung perangkat yang dibutuhkan sebelum konfigurasi.",
+
+    salah: "Coba perhatikan skenario simulasi. Berapa PC yang sebenarnya digunakan dalam jaringan ini?"
+
+  },
+
+  q4: {
+
+    benar: "Tepat! Jenis kabel yang digunakan mempengaruhi koneksi antar perangkat. Ingat, PC ke switch biasanya pakai kabel straight-through.",
+
+    salah: "Pertimbangkan jenis koneksi antara PC dan switch. Kabel apa yang biasanya digunakan agar perangkat bisa saling berkomunikasi?"
+
+  },
+
+  q5: {
+
+    benar: "Benar! Kamu memahami alokasi IP. Setiap PC harus memiliki alamat IP unik agar komunikasi lancar.",
+
+    salah: "Cek kembali tabel IP yang diberikan. Alamat IP mana yang sesuai untuk PC3 menurut urutan topologi?"
+
+  }
+
+};
+
+
+
+// 4. Fungsi Waktu (Penyebab Error Sebelumnya)
+
+function dapatkanWaktuSekarang() {
+
+    const d = new Date();
+
+    const tgl = d.getDate().toString().padStart(2, '0');
+
+    const bln = (d.getMonth() + 1).toString().padStart(2, '0');
+
+    const jam = d.getHours().toString().padStart(2, '0');
+
+    const mnt = d.getMinutes().toString().padStart(2, '0');
+
+    return `${tgl}/${bln}/${d.getFullYear()} - ${jam}:${mnt} WIB`;
+
+}
+
+
+
+// 5. Fungsi Submit Utama
+
+window.submitQuiz = async function() {
+
+    let benar = 0;
+
+    let jawabanSiswa = {};
+
+
+
+    // Ambil semua jawaban
+
+    Object.keys(jawaban).forEach(k => {
+
+        const j = document.querySelector(`input[name="${k}"]:checked`);
+
+        if (j) {
+
+            jawabanSiswa[k] = j.value;
+
+            if (j.value === jawaban[k]) benar++;
+
+        }
+
+    });
+
+
+
+    // Validasi input
+
+    if (Object.keys(jawabanSiswa).length < Object.keys(jawaban).length) {
+
+        alert("Harap jawab semua pertanyaan!");
+
+        return;
+
+    }
+
+
+
+    const nilai = benar * 20;
+
+    const waktuDetik = Math.floor((Date.now() - startTime) / 1000);
+
+    const waktuIndo = dapatkanWaktuSekarang();
+
+
+
+    try {
+
+        // Ambil Profil User
+
+        const userSnap = await get(ref(db, `users/${userId}`));
+
+        const profil = userSnap.val() || {};
+
+
+
+        // Simpan History User
+
+        const historyData = {
+
+            nilai: nilai,
+
+            waktu: waktuDetik,
+
+            lulus: nilai >= KKM,
+
+            jawaban: jawabanSiswa,
+
+            waktuSelesai: waktuIndo
+
+        };
+
+        await set(ref(db, `users/${userId}/kuis/indikator${INDIKATOR_ID}`), historyData);
+
+
+
+        // Jika Lulus, Simpan ke Leaderboard
+
+        if (nilai >= KKM) {
+
+            await set(ref(db, `leaderboard/indikator${INDIKATOR_ID}/${userId}`), {
+
+                nama: profil.nama || "Siswa",
+
+                nilai: nilai,
+
+                waktu: waktuDetik,
+
+                waktuSelesai: waktuIndo,
+
+                role: profil.role || "Siswa",
+
+                kelas: profil.kelas || "-"
+
+            });
+
+            localStorage.setItem(`lulus_i${INDIKATOR_ID}_${userId}`, "true");
+
+        }
+
+
+
+        tampilkanPopupHasil(nilai, waktuDetik, historyData);
+
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Koneksi gagal! Data tidak tersimpan.");
+
+    }
+
+};
+
+
+
+// 6. UI Functions (Popup & Review)
+
+function tampilkanPopupHasil(nilai, waktu, historyData) {
+    const popup = document.getElementById("popup");
+    const popupBox = document.getElementById("popupBox");
+    const popupIcon = document.getElementById("popupIcon");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupMessage = document.getElementById("popupMessage");
+    const popupActions = document.getElementById("popupActions");
+    
+    document.getElementById("popupScore").innerHTML = `Nilai: <b>${nilai}</b>`;
+    document.getElementById("popupTime").innerHTML = `Waktu: <b>${waktu} detik</b>`;
+    
+    if (nilai < KKM) {
+        // DESAIN GAGAL
+        popupBox.className = "popup-box fail";
+        popupIcon.innerHTML = "❌";
+        popupTitle.innerText = "Belum Lulus";
+        popupMessage.innerText = "Nilai kamu di bawah KKM (70). Klik OK untuk melihat pembahasan.";
+        popupActions.innerHTML = `<button class="btn" onclick="popupGagal()">OK</button>`;
+    } else {
+        // DESAIN LULUS (INI YANG SEBELUMNYA HILANG)
+        popupBox.className = "popup-box success";
+        popupIcon.innerHTML = "🎉";
+        popupTitle.innerText = "Luar Biasa!";
+        popupMessage.innerText = "Selamat! Kamu telah menguasai materi Indikator 3 dengan sangat baik.";
+        popupActions.innerHTML = `<button class="btn" onclick="popupLulus()">Lihat Pembahasan</button>`;
+    }
+    
+    popup.style.display = "flex";
+}
+
+// Fungsi yang dipanggil saat klik OK setelah LULUS
+// Fungsi dipanggil saat klik tombol OK di Popup
+window.popupLulus = function() {
+    tutupPopup();
+    kunciKuis();
+    // Mengambil data terbaru untuk menampilkan review
+    get(ref(db, `users/${userId}/kuis/indikator${INDIKATOR_ID}`)).then((snap) => {
+        if (snap.exists()) {
+            tampilkanReview(snap.val());
+            tampilTombolLeaderboard();
+            
+            // Scroll otomatis ke hasil kuis agar siswa tahu review sudah muncul
+            document.getElementById("quizCard").scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+};
+
+
+window.popupGagal = function () {
+    tutupPopup();
+    kunciKuis();
+
+    get(ref(db, `users/${userId}/kuis/indikator${INDIKATOR_ID}`)).then((snap) => {
+        if (snap.exists()) {
+            tampilkanReview(snap.val());
+
+            // Ubah tombol Submit menjadi Ulangi
+            ubahKeUlangi();
+
+            document.getElementById("quizCard")
+                .scrollIntoView({ behavior: "smooth" });
+        }
+    });
+};
+
+
+
+function tutupPopup() {
+    document.getElementById("popup").style.display = "none";
+}
+function kunciKuis() {
+
+    const btn = document.getElementById("submitBtn");
+
+    if (btn) {
+
+        btn.disabled = true;
+
+        btn.innerText = "Kuis Selesai";
+
+    }
+
+    document.querySelectorAll("input[type=radio]").forEach(r => r.disabled = true);
+
+}
+
+function ubahKeUlangi() {
+    const btn = document.getElementById("submitBtn");
+
+    btn.disabled = false;
+    btn.innerText = "🔄 Ulangi Kuis";
+    btn.onclick = () => location.reload();
+}
+
+
+function tampilkanReview(data) {
+    Object.keys(jawaban).forEach(k => {
+        const container = document.querySelector(`[data-q="${k}"]`);
+        if (!container || container.dataset.reviewed) return;
+        container.dataset.reviewed = "true";
+
+        const userJawab = data.jawaban[k];
+        const benar = jawaban[k];
+
+        container.querySelectorAll("label").forEach(label => {
+            const input = label.querySelector("input");
+            const val = input.value;
+
+            // Reset semua warna
+            label.classList.remove("benar", "salah", "normal");
+
+            // HANYA pilihan yang dipilih user yang diberi warna
+            if (val === userJawab) {
+                if (val === benar) {
+                    label.classList.add("benar");   // hijau
+                } else {
+                    label.classList.add("salah");   // merah
+                }
+            }
+            // Yang tidak dipilih → tidak diberi class apapun (tetap transparan)
+        });
+
+        // Box penjelasan
+        const info = document.createElement("div");
+        info.className = "kunci";
+
+        if (userJawab === benar) {
+            info.innerHTML = `✅ <b>Jawaban kamu BENAR</b><br>${penjelasan[k].benar}`;
+            info.style.borderLeftColor = "#2ecc71";
+        } else {
+            info.innerHTML = `❌ <b>Jawaban kamu SALAH</b><br>${penjelasan[k].salah}`;
+            info.style.borderLeftColor = "#e74c3c";
+        }
+
+        container.appendChild(info);
+    });
+}
+
+
+function tampilkanTombolUlangi() {
+    if (document.getElementById("btnUlangi")) return;
+
+    const div = document.createElement("div");
+    div.style.textAlign = "center";
+    div.style.marginTop = "30px";
+
+    div.innerHTML = `
+        <button id="btnUlangi" class="btn"
+            onclick="location.reload()">
+            Ulangi Kuis
+        </button>
+    `;
+
+    document.getElementById("quizCard").appendChild(div);
+}
+
+
+
+
+// Inisialisasi saat load (Cek jika sudah pernah lulus)
+
+async function init() {
+
+    const snap = await get(ref(db, `users/${userId}/kuis/indikator${INDIKATOR_ID}`));
+
+    if (snap.exists() && snap.val().lulus) {
+
+        kunciKuis();
+
+        tampilkanReview(snap.val());
+
+        tampilTombolLeaderboard(); // Panggil fungsi ini
+
+    }
+
+}
+
+init();
+
+
+
+function tampilTombolLeaderboard() {
+    const cardLB = document.getElementById("cardLeaderboard");
+    if (cardLB) {
+        cardLB.style.display = "block";
+        cardLB.classList.add("show"); // Menjalankan animasi
+    }
+}
+
+
+
+// Animasi Scroll
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
+
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".animate").forEach(el => observer.observe(el));
+
+</script>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p>©2025 PTI IPI Garut - Karlina, Andini, Bunga.</p>
+
+</footer>
+
+
+
+</body>
+
+</html>

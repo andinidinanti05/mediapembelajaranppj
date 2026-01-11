@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuis Akhir | Topologi Jaringan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* CSS TETAP SAMA SESUAI PERMINTAAN */
+.navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(52,70,163,0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); z-index:999; }
+.brand-text h1{ font-weight:700 !important; line-height:1.2 !important; }
+nav ul li a{ font-weight:600 !important; }
+.gradient-text{ background: linear-gradient(90deg, #e93538, #ff6f61, #f8c471); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+body{ margin:0; font-family:'Poppins',sans-serif; background:linear-gradient(180deg,#2f3e8f,#1a2a6c); color:#ffffff; }
+.container{ max-width:1000px; margin:auto; padding:120px 20px 60px; }
+.card{ background:rgba(255,255,255,0.12); border-radius:20px; padding:30px; margin-bottom:30px; border:1px solid rgba(255,255,255,0.18); max-width:750px; margin-left:auto; margin-right:auto; }
+.quiz-item{ margin-bottom:22px; padding:20px; border-radius:18px; background:rgba(255,255,255,0.10); }
+.quiz-item p{ margin-top:0; font-weight:500; }
+.quiz-item label{ display:block; margin:8px 0; cursor:pointer; padding: 8px 10px; border-radius: 8px; transition: .3s; }
+.btn{ padding:12px 34px; border:none; border-radius:30px; background:linear-gradient(90deg,#ff4d4d,#ff7b54); color:#fff; font-size:15px; font-weight:600; cursor:pointer; transition:.3s; }
+.btn:hover{ opacity:.9; transform:scale(1.03); }
+.btn:disabled{ opacity:.6; cursor:not-allowed; }
+.kunci{ margin-top:12px; padding:12px 16px; background:#eafaf1; color:#145a32; border-left:4px solid #2ecc71; border-radius:10px; }
+.materi-header{ max-width:900px; margin:0 auto 40px; text-align:left; }
+.materi-badge{ display:inline-block; padding:6px 16px; border-radius:10px; font-size:13px; font-weight:600; margin-bottom:14px; background: rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.18); color:#ffffff; }
+#quizCard h2{ font-size:25px !important; line-height:1.25 !important; font-weight:800 !important; background: linear-gradient(90deg, #e93538, #ff6f61, #f8c471) !important; -webkit-background-clip:text !important; -webkit-text-fill-color:transparent !important; }
+.quiz-item label.benar { background: #e9f8f0; border-left: 5px solid #2ecc71; color: #145a32; }
+.quiz-item label.salah { background: #fdeaea; border-left: 5px solid #e74c3c; color: #7b241c; }
+.quiz-item label.normal { background: rgba(255,255,255,0.05); color: #fff; }
+.popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 9999; }
+.popup-box { background: #ffffff; width: 95%; max-width: 450px; padding: 40px 30px; border-radius: 30px; text-align: center; color: #1f2937; }
+.popup-icon { font-size: 60px; margin-bottom: 10px; }
+</style>
+</head>
+
+<body>
+<header class="navbar">
+    <div class="nav-container">
+        <div class="brand">
+            <img src="img/logo-smkn9.png" class="logo">
+            <div class="brand-text">
+                <h1>SMKN 9 Garut</h1>
+                <span>Media Pembelajaran TJKT</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Materi</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card" id="quizCard">
+        <div class="materi-header">
+            <span class="materi-badge">📝 Evaluasi Akhir</span>
+            <h2 class="materi-title gradient-text">Kuis Akhir: Topologi Jaringan</h2>
+        </div>
+
+        <div class="instruction-box" style="display:flex; gap:14px; padding:16px; background:rgba(255,255,255,0.1); border-radius:12px; margin-bottom:25px;">
+            <div class="instruction-icon">ℹ️</div>
+            <div class="instruction-text" style="font-size:14px; line-height:1.6;">
+                Selesaikan kuis akhir ini untuk menguji pemahaman Anda. Anda harus mencapai nilai <b>minimal 70</b> untuk dianggap Tuntas.
+            </div>
+        </div>
+
+        <div id="quizContainer">
+            </div>
+
+        <div id="quizActions" style="text-align:center; margin-top:30px;">
+            <button id="submitBtn" class="btn" onclick="submitQuiz()">Kirim Jawaban</button>
+        </div>
+    </div>
+</div>
+
+<div id="popup" class="popup-overlay">
+    <div id="popupBox" class="popup-box">
+        <div class="popup-icon" id="popupIcon"></div>
+        <h2 id="popupTitle"></h2>
+        <p id="popupScore" style="font-size:24px; font-weight:bold; margin:10px 0;"></p>
+        <p id="popupMessage" class="popup-message"></p>
+        <div id="popupActions" class="popup-actions" style="margin-top:20px;"></div>
+    </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const userId = localStorage.getItem("userLogin");
+const startTime = Date.now();
+
+const soalAkhir = [
+    { q: "q1", t: "Topologi jaringan yang menggunakan satu kabel utama sebagai jalur komunikasi disebut…", o: ["Star", "Mesh", "Bus", "Hybrid"], b: "Bus" },
+    { q: "q2", t: "Kelebihan topologi Bus adalah…", o: ["Jika kabel putus, jaringan tetap berjalan", "Hemat kabel dan mudah dipasang", "Paling aman", "Fleksibel"], b: "Hemat kabel dan mudah dipasang" },
+    { q: "q3", t: "Pada topologi Star, semua perangkat terhubung ke…", o: ["Router", "Hub/Switch pusat", "Server", "Kabel Utama"], b: "Hub/Switch pusat" },
+    { q: "q4", t: "Jika switch pusat pada topologi Star rusak, maka…", o: ["Jaringan tetap jalan", "Hanya satu PC mati", "Seluruh koneksi berhenti", "Kecepatan naik"], b: "Seluruh koneksi berhenti" },
+    { q: "q5", t: "Topologi yang menghubungkan perangkat dalam bentuk lingkaran tertutup adalah…", o: ["Star", "Ring", "Bus", "Mesh"], b: "Ring" }
+];
+
+// Render Soal
+const container = document.getElementById("quizContainer");
+soalAkhir.forEach((s, i) => {
+    container.innerHTML += `
+        <div class="quiz-item" data-q="${s.q}">
+            <p><b>${i+1}. ${s.t}</b></p>
+            ${s.o.map(opt => `<label><input type="radio" name="${s.q}" value="${opt}"> ${opt}</label>`).join('')}
+        </div>`;
+});
+
+// Fungsi menampilkan tombol Leaderboard di halaman utama kuis
+function tampilkanTombolLeaderboardHalaman() {
+    const actions = document.getElementById("quizActions");
+    // Cek jika tombol belum ada
+    if(!document.getElementById("btnKeLeaderboard")) {
+        const btnLB = document.createElement("button");
+        btnLB.id = "btnKeLeaderboard";
+        btnLB.className = "btn";
+        btnLB.style.background = "linear-gradient(90deg, #3498db, #2980b9)";
+        btnLB.style.marginTop = "15px";
+        btnLB.innerText = "Lihat Leaderboard";
+        btnLB.onclick = () => location.href = "leaderboard.html?indikator=akhir";
+        actions.appendChild(btnLB);
+    }
+}
+
+window.submitQuiz = async function() {
+    let benar = 0;
+    let jawabanSiswa = {};
+    
+    for(let s of soalAkhir) {
+        const input = document.querySelector(`input[name="${s.q}"]:checked`);
+        if(!input) { alert("Harap jawab semua soal!"); return; }
+        jawabanSiswa[s.q] = input.value;
+        if(input.value === s.b) benar++;
+    }
+
+    const nilai = (benar / soalAkhir.length) * 100;
+    const waktu = Math.floor((Date.now() - startTime) / 1000);
+    const d = new Date();
+    const waktuIndo = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()} WIB`;
+
+    try {
+        const userSnap = await get(ref(db, `users/${userId}`));
+        const profil = userSnap.val() || {};
+
+        // 1. Simpan ke Firebase
+        await set(ref(db, `users/${userId}/kuis/akhir`), {
+            nilai, waktu, jawabanSiswa, waktuSelesai: waktuIndo
+        });
+
+        // 2. Simpan ke Leaderboard (Opsional: Tetap simpan jika kuis ini saja lulus)
+        if(nilai >= 70) {
+            await set(ref(db, `leaderboard/kuis_akhir/${userId}`), {
+                nama: profil.nama || "Siswa",
+                kelas: profil.kelas || "-",
+                nilai: nilai,
+                waktu: waktu,
+                waktuSelesai: waktuIndo,
+                role: profil.role || "Siswa"
+            });
+        } 
+
+        // 3. Tampilkan Popup
+        // KITA TIDAK MEMANGGIL kunciInput() DI SINI
+        // Agar siswa bisa diarahkan ke halaman laporan dulu untuk cek akumulasi
+        tampilPopup(nilai, waktu);
+
+    } catch(e) { console.error(e); alert("Gagal mengirim hasil."); }
+};
+
+function kunciInput() {
+    document.querySelectorAll("input[type='radio']").forEach(inp => inp.disabled = true);
+    const btnSubmit = document.getElementById("submitBtn");
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = "Kuis Selesai";
+}
+
+function tampilPopup(nilai, waktu) {
+    const popup = document.getElementById("popup");
+    const icon = document.getElementById("popupIcon");
+    const title = document.getElementById("popupTitle");
+    const score = document.getElementById("popupScore");
+    const actions = document.getElementById("popupActions");
+
+    score.innerText = `Skor Kuis Akhir: ${nilai}`;
+    popup.style.display = "flex";
+
+    if(nilai >= 70) {
+        icon.innerText = "🎉";
+        title.innerText = "Kuis Selesai!";
+        actions.innerHTML = `
+            <p style="margin-bottom:15px; font-size:14px; color:#555;">Cek apakah nilai akumulasi Anda sudah mencapai target untuk mendapatkan sertifikat.</p>
+            <button class="btn" onclick="location.href='laporan-akhir-topologi.html'">Lihat Laporan Akhir</button>
+        `;
+    } else {
+        icon.innerText = "❌";
+        title.innerText = "Nilai Belum Cukup";
+        actions.innerHTML = `
+            <p style="margin-bottom:15px; font-size:14px; color:#555;">Skor kuis ini di bawah 70. Anda perlu mengulang agar nilai akumulasi terbantu.</p>
+            <button class="btn" onclick="location.reload()">Ulangi Kuis</button>
+        `;
+    }
+}
+
+window.tutupPopup = function() {
+    document.getElementById("popup").style.display = "none";
+}
+
+// Cek status pengerjaan saat halaman dimuat
+async function cekStatus() {
+    // 1. Cek apakah di memori sudah tercatat lulus akumulasi
+    const isLulusFinal = localStorage.getItem(`status_lulus_final_${userId}`);
+    
+    // 2. Ambil data kuis akhir dari firebase
+    const snapKuis = await get(ref(db, `users/${userId}/kuis/akhir`));
+    
+    if (isLulusFinal === "true") {
+        // JIKA SUDAH LULUS AKUMULASI (DI LAPORAN), MAKA KUNCI TOTAL
+        kunciInput();
+        const data = snapKuis.val();
+        document.getElementById("submitBtn").innerText = "Tuntas (Nilai: " + (data?.nilai || 0) + ")";
+        tampilkanTombolLeaderboardHalaman();
+    } else {
+        // JIKA BELUM LULUS AKUMULASI, TETAP BISA DIKERJAKAN
+        if(snapKuis.exists()) {
+             document.getElementById("submitBtn").innerText = "Coba Lagi (Nilai Terakhir: " + snapKuis.val().nilai + ")";
+        } else {
+             document.getElementById("submitBtn").innerText = "Kirim Jawaban";
+        }
+    }
+}
+cekStatus();
+</script>
+
+<footer style="text-align:center; padding:20px; color:rgba(255,255,255,0.5); font-size:12px;">
+    ©2026 SMKN 9 Garut - Media Pembelajaran TJKT
+</footer>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | PJTJ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* (Style Anda tetap sama, saya hanya merapikan area profil) */
+        .gradient-text{ background: linear-gradient(90deg,#e93538,#ff6f61,#f8c471); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700; }
+        .dashboard-container{ max-width:1200px; margin:auto; padding:120px 20px 40px; display:grid; grid-template-columns:3fr 1.2fr; gap:30px; }
+        .card{ background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border-radius:20px; padding:26px; border:1px solid rgba(255,255,255,0.3); box-shadow:0 4px 20px rgba(255,255,255,0.1); }
+        .materi-grid{ margin-top:20px; display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+        .materi-item{ display:flex; justify-content:space-between; align-items:center; padding:26px; border-radius:20px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); cursor:pointer; text-decoration: none; color: white; transition:.3s; }
+        .materi-item:hover{ transform:translateY(-5px); background:rgba(255,255,255,0.25); }
+        .materi-icon{ width:60px; height:60px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.25); font-size:26px; }
+        
+        .dashboard-container .card p{ display:flex !important; align-items:center; gap:14px; margin-bottom:12px; }
+        .dashboard-container .card p strong{ width:100px; flex-shrink:0; font-weight:600; }
+        
+        /* Kalender */
+        .calendar table{ width:100%; border-collapse:collapse; text-align:center; }
+        .today{ background:#e93538; border-radius:50%; font-weight:700; }
+
+        @media(max-width:900px){ .dashboard-container{grid-template-columns:1fr;} .materi-grid{grid-template-columns:1fr;} }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <div class="brand">
+            <img src="img/logo-smkn9.png" class="logo">
+            <div class="brand-text">
+                <h1>SMKN 9 Garut</h1>
+                <span>Media Pembelajaran TJKT</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="dashboard-container">
+    <div>
+        <h2 class="gradient-text">Dashboard</h2>
+        <div class="card welcome">
+            <h2 id="sapaan">Memuat...</h2>
+            <p>Tetap semangat belajar hari ini 🌟</p>
+        </div>
+
+        <h3 class="gradient-text" style="margin-top:28px;">Materi Perencanaan dan Pengalamatan Jaringan</h3>
+        <div class="materi-grid">
+            <div class="materi-item"><div>Pengenalan Jaringan Komputer</div><div class="materi-icon">📘</div></div>
+            <a href="materi-topologi.html" class="materi-item"><div>Perencanaan Topologi Jaringan</div><div class="materi-icon">🗺️</div></a>
+            <div class="materi-item"><div>IP Address dan Subnetting</div><div class="materi-icon">🌐</div></div>
+            <div class="materi-item"><div>Perencanaan Alamat IP</div><div class="materi-icon">🧮</div></div>
+        </div>
+    </div>
+
+    <div>
+        <h3 class="gradient-text">Data Diri</h3>
+        <div class="card" id="profile-container">
+            <p>Memuat data...</p>
+        </div>
+
+        <h3 class="gradient-text" style="margin-top:24px;">Kalender</h3>
+        <div class="card calendar">
+            <div class="calendar-header" style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <select id="bulan" style="background:none; color:white; border:1px solid rgba(255,255,255,0.3); border-radius:5px;"></select>
+                <select id="tahun" style="background:none; color:white; border:1px solid rgba(255,255,255,0.3); border-radius:5px;"></select>
+            </div>
+            <table>
+                <thead><tr><th>Min</th><th>Sen</th><th>Sel</th><th>Rab</th><th>Kam</th><th>Jum</th><th>Sab</th></tr></thead>
+                <tbody id="calendar-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+        databaseURL: "https://mediabelajarppj-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const currentUserId = localStorage.getItem("userLogin");
+
+    if(!currentUserId){
+        window.location.href="login.html";
+    }
+
+    // AMBIL DATA DARI FIREBASE
+    async function loadProfile() {
+        try {
+            const snapshot = await get(ref(db, `users/${currentUserId}`));
+            if (snapshot.exists()) {
+                const user = snapshot.val();
+                // Normalisasi role menjadi huruf kecil untuk pengecekan
+                const role = (user.role || "Lainnya").toLowerCase();
+
+                // 1. UPDATE SAPAAN (Menampilkan Nama di Header Welcome)
+                document.getElementById("sapaan").innerText = `Selamat Datang, ${user.nama || 'User'}!`;
+
+                // 2. UPDATE KARTU DATA DIRI BERDASARKAN ROLE
+                const profileContainer = document.getElementById("profile-container");
+                let htmlProfile = "";
+
+                if (role === "siswa") {
+                    // TAMPILAN UNTUK SISWA
+                    htmlProfile = `
+                        <p><strong>Nama :</strong><span>${user.nama || '-'}</span></p>
+                        <p><strong>NISN :</strong><span>${user.nisn || '-'}</span></p>
+                        <p><strong>Kelas :</strong><span>${user.kelas || '-'}</span></p>
+                    `;
+                } else {
+                    // TAMPILAN UNTUK LAINNYA / TAMU (Tanpa Instansi)
+                    htmlProfile = `
+                        <p><strong>Nama :</strong><span>${user.nama || '-'}</span></p>
+                        <p><strong>Status :</strong><span>${user.role || 'Tamu'}</span></p>
+                    `;
+                }
+                
+                // Masukkan HTML ke dalam card profil
+                profileContainer.innerHTML = htmlProfile;
+
+            } else {
+                console.error("Data user tidak ditemukan di database.");
+            }
+        } catch (e) {
+            console.error("Gagal memuat profil:", e);
+        }
+    }
+
+    loadProfile();
+</script>
+
+<script>
+    /* ===== LOGOUT ===== */
+    function logout(){
+        localStorage.removeItem("userLogin");
+        window.location.href="login.html";
+    }
+
+    /* ===== KALENDER (Tetap Sama) ===== */
+    const bulanSelect=document.getElementById("bulan");
+    const tahunSelect=document.getElementById("tahun");
+    const body=document.getElementById("calendar-body");
+    const namaBulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+    const now=new Date();
+
+    namaBulan.forEach((b,i)=>bulanSelect.innerHTML+=`<option value="${i}">${b}</option>`);
+    for(let y=2020;y<=2035;y++)tahunSelect.innerHTML+=`<option value="${y}">${y}</option>`;
+    bulanSelect.value=now.getMonth(); tahunSelect.value=now.getFullYear();
+
+    function renderCalendar(){
+        body.innerHTML="";
+        const m=+bulanSelect.value; const y=+tahunSelect.value;
+        const first=new Date(y,m,1).getDay(); const days=new Date(y,m+1,0).getDate();
+        let d=1;
+        for(let i=0;i<6;i++){
+            const row=document.createElement("tr");
+            for(let j=0;j<7;j++){
+                const cell=document.createElement("td");
+                if(i===0 && j<first || d>days){cell.innerHTML="";}
+                else{
+                    cell.innerText=d;
+                    if(d===now.getDate() && m===now.getMonth() && y===now.getFullYear()) cell.classList.add("today");
+                    d++;
+                }
+                row.appendChild(cell);
+            }
+            body.appendChild(row);
+        }
+    }
+    bulanSelect.onchange=renderCalendar; tahunSelect.onchange=renderCalendar; renderCalendar();
+</script>
+</body>
+</html>
